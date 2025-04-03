@@ -20,3 +20,4 @@
 - EA and UML 
 
 - Unit Test Bare Metal, Unit test HAL
+- Parsing binary files (.Wave files)
