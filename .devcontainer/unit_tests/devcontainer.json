@@ -1,0 +1,22 @@
+{
+    "name": "LEX_Unit_Tests",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true,
+                "[cpp]": {
+                    "editor.defaultFormatter": "xaver.clang-format"
+                }
+            },
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "matepek.vscode-catch2-test-adapter",
+                "webfreak.debug",
+                "xaver.clang-format"
+            ]
+        }
+    }
+}

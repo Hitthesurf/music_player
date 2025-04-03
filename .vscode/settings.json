@@ -1,0 +1,52 @@
+{
+    "C_Cpp.autoAddFileAssociations": false,
+    "cSpell.words": [],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.metadatax": true,
+        "**/.mxprojectx": true,
+        "**/.settings": true,
+        "**/*Debug/": true,
+        "**/*Release/": true,
+        "**/build/": false
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/.metadatax": true,
+        "**/.mxprojectx": true,
+        "**/.settings": true,
+        "**/*Debug/": true,
+        "**/*Release/": true,
+        "**/build/": true
+    },
+    "testMate.cpp.debug.configTemplate": {
+        "args": "${argsArray}",
+        "cwd": "${cwd}",
+        "env": "${envObj}",
+        "console": false,
+        "program": "${exec}",
+        "request": "launch",
+        "sourceFileMap": "${sourceFileMapObj}",
+        "stopAtEntry": false,
+        "target": "${exec}",
+        "type": "cppvsdbg",
+        "type.to.use.for.clang": "cppvsdbg",
+        "type.to.use.for.gdb": "gdb",
+        "gdbpath": "${env:MINGW_ROOT}/bin/gdb",
+        "valuesFormatting": "parseText",
+        "linux": {
+            "type": "cppdbg",
+            "MIMode": "gdb"
+        },
+        "testMate.cpp.debug.setEnv": {
+            "GTEST_CATCH_EXCEPTIONS": "0"
+        }
+    },
+    "testMate.cpp.test.executables": "${workspaceFolder}/build/*vscode*/**/*{Tests.}*",
+    "todo-tree.filtering.excludeGlobs": [
+        "**/build/**"
+    ],
+    "todo-tree.filtering.includeGlobs": [
+        "**/**"
+    ]
+}

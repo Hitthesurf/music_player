@@ -1,0 +1,47 @@
+{
+    "version": 4,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        },
+        {
+            "name": "firmware.windos",
+            "inherits": "default",
+            "cacheVariables": {
+            }
+        },
+        {
+            "name": "firmware.linux",
+            "inherits": "default",
+            "cacheVariables": {
+            }
+        },
+        {
+            "name": "unit_tests.gcc.windows",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "unit_tests.gcc.linux",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
+            }
+        }
+    ]
+}
