@@ -1,0 +1,11 @@
+# cmake
+build/
+
+# vscode
+.vscode/*
+!.vscode/c_cpp_properties.json
+!.vscode/cmake-kits.json
+!.vscode/cmake-variants.yaml
+!.vscode/extensions.json
+!.vscode/launch.template.json
+!.vscode/settings.json
