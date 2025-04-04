@@ -35,7 +35,6 @@ AlignOperands: DontAlign
 AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortCaseLabelsOnASingleLine: true
 AllowShortEnumsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortLambdasOnASingleLine: All
@@ -51,13 +50,14 @@ DerivePointerAlignment: false
 EmptyLineBeforeAccessModifier: LogicalBlock
 FixNamespaceComments: false
 IndentExternBlock: NoIndent
+InsertNewlineAtEOF: true
 PackConstructorInitializers: Never
 PenaltyBreakComment: 10000000
 PointerAlignment: Left
 SeparateDefinitionBlocks: Always
 SortIncludes: CaseInsensitive
 SortUsingDeclarations: true
-SpaceBeforeCpp11BracedList: true
+SpaceBeforeCpp11BracedList: false
 ForEachMacros: [ foreach, Q_FOREACH, BOOST_FOREACH, forever, Q_FOREVER, QBENCHMARK, QBENCHMARK_ONCE , wl_resource_for_each, wl_resource_for_each_safe ]
 WhitespaceSensitiveMacros: [ TEST, TEST_F, TEST_P, Q_OBJECT, Q_PROPERTY, Q_CLASSINFO, QML_ELEMENT, QML_SINGLETON, QML_NAMED_ELEMENT, QML_ANONYMOUS, QML_ATTACHED, QML_UNCREATABLE ]
 

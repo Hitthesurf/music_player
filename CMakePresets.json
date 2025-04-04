@@ -1,10 +1,5 @@
 {
-    "version": 4,
-    "cmakeMinimumRequired": {
-        "major": 3,
-        "minor": 21,
-        "patch": 0
-    },
+    "version": 8,
     "configurePresets": [
         {
             "name": "default",
@@ -16,32 +11,53 @@
             }
         },
         {
-            "name": "firmware.windos",
+            "name": "unit-tests",
+            "hidden": true,
             "inherits": "default",
             "cacheVariables": {
+                "TESTS": "ON"
             }
+        },
+        {
+            "name": "windows",
+            "hidden": true,
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "linux",
+            "hidden": true,
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "firmware.windows",
+            "inherits": "default"
         },
         {
             "name": "firmware.linux",
-            "inherits": "default",
-            "cacheVariables": {
-            }
+            "inherits": "default"
         },
         {
-            "name": "unit_tests.gcc.windows",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++"
-            }
+            "name": "unit-tests.gcc.windows",
+            "toolchainFile": "cmake/toolchain_windows_gcc.cmake",
+            "inherits": [
+                "unit-tests",
+                "windows"
+            ]
         },
         {
-            "name": "unit_tests.gcc.linux",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "/usr/bin/clang",
-                "CMAKE_CXX_COMPILER": "/usr/bin/clang++"
-            }
+            "name": "unit-tests.gcc.linux",
+            "inherits": [
+                "unit-tests",
+                "linux"
+            ]
         }
     ]
 }

@@ -1,6 +1,9 @@
 {
     "C_Cpp.autoAddFileAssociations": false,
     "cSpell.words": [],
+    "cmake.buildBeforeRun": true,
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.useCMakePresets": "always",
     "files.exclude": {
         "**/.git": true,
         "**/.metadatax": true,
