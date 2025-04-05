@@ -45,7 +45,7 @@
             "GTEST_CATCH_EXCEPTIONS": "0"
         }
     },
-    "testMate.cpp.test.executables": "${workspaceFolder}/build/*vscode*/**/*{Tests.}*",
+    "testMate.cpp.test.executables": "${workspaceFolder}/build/vs.*/**/*{[tT]ests.}*",
     "todo-tree.filtering.excludeGlobs": [
         "**/build/**"
     ],

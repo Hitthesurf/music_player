@@ -5,7 +5,7 @@
             "name": "default",
             "hidden": true,
             "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build/${presetName}",
+            "binaryDir": "${sourceDir}/build/vs.${presetName}",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
             }
@@ -58,6 +58,18 @@
                 "unit-tests",
                 "linux"
             ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "unit-tests.gcc.windows",
+            "configurePreset": "unit-tests.gcc.windows"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "unit-tests.gcc.windows",
+            "configurePreset": "unit-tests.gcc.windows"
         }
     ]
 }
