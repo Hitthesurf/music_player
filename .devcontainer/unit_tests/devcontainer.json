@@ -1,5 +1,5 @@
 {
-    "name": "LEX_Unit_Tests",
+    "name": "Unit_Tests",
     "build": {
         "dockerfile": "Dockerfile"
     },
