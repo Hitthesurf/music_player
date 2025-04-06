@@ -36,6 +36,6 @@ jobs:
           context: .
           file: .devcontainer/unit_tests/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/music_player_unit_tests:latest
+          tags: ghcr.io/${{ github.repository_owner }}.toLowerCase()/music_player_unit_tests:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
