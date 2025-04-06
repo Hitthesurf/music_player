@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
+      - name: Confirm toolchain is available
+        run: which arm-none-eabi-gcc
       - name: Build Firmware
         run: cd scripts && ./build_stm32h7_firmware.sh
       - name: Rename and copy files
