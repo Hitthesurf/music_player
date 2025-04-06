@@ -23,3 +23,8 @@ jobs:
 
     - name: Build And Run Unit Tests
       run: cd scripts && ./build_and_run_unit_tests.sh unit-tests.gcc.linux
+
+    - name: Upload Unit Test Results
+      uses: actions/upload-test-results@v2
+      with:
+        files: ./Logs/*.xml
