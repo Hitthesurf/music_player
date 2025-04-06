@@ -21,3 +21,6 @@
 
 - Unit Test Bare Metal, Unit test HAL
 - Parsing binary files (.Wave files)
+
+# Fixes needed
+- The unit test run does not wait for the docker action to be finished building.
