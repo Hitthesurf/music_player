@@ -1,0 +1,2 @@
+add_subdirectory(firmware/music_player)
+add_subdirectory(firmware/targets)

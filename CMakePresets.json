@@ -19,6 +19,15 @@
             }
         },
         {
+            "name": "firmware",
+            "hidden": false,
+            "toolchainFile": "cmake/target_stm32h7a3xx.cmake",
+            "inherits": "default",
+            "cacheVariables": {
+                "TESTS": "OFF"
+            }
+        },
+        {
             "name": "windows",
             "hidden": true,
             "condition": {
@@ -35,14 +44,6 @@
                 "lhs": "${hostSystemName}",
                 "rhs": "Linux"
             }
-        },
-        {
-            "name": "firmware.windows",
-            "inherits": "default"
-        },
-        {
-            "name": "firmware.linux",
-            "inherits": "default"
         },
         {
             "name": "unit-tests.gcc.windows",
@@ -69,6 +70,10 @@
         {
             "name": "unit-tests.gcc.linux",
             "configurePreset": "unit-tests.gcc.linux"
+        },
+        {
+            "name": "firmware",
+            "configurePreset": "firmware"
         }
     ],
     "testPresets": [

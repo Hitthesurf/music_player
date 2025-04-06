@@ -16,4 +16,6 @@ endif()
 
 if(TESTS)
   include(firmware/unittests.cmake)
+else()
+  include(firmware/firmware.cmake)
 endif()
