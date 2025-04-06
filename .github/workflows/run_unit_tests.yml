@@ -4,10 +4,20 @@ on: push
 
 permissions:
   contents: read
+  packages: read  # Needed to pull from GHCR if private
+
 
 jobs:
   unit-tests:
     runs-on: ubuntu-24.04
+    needs: build-docker-image
+
+    container:
+      image: ghcr.io/markpearson/music_player_unit_tests:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
