@@ -18,6 +18,7 @@ else()
   message(FATAL_ERROR "Neither STM32CLT_PATH nor STM32CUBECLT_PATH is defined")
 endif()
 
+file(TO_CMAKE_PATH "${TOOLCHAIN_BASE}" TOOLCHAIN_BASE)
 set(TOOLCHAIN_PATH "${TOOLCHAIN_BASE}/GNU-tools-for-STM32/bin")
 
 # Toolchain executables
