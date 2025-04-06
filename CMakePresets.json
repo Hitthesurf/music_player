@@ -54,6 +54,7 @@
         },
         {
             "name": "unit-tests.gcc.linux",
+            "toolchainFile": "cmake/toolchain_linux_gcc.cmake",
             "inherits": [
                 "unit-tests",
                 "linux"
