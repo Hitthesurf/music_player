@@ -10,7 +10,6 @@ permissions:
 jobs:
   unit-tests:
     runs-on: ubuntu-24.04
-    needs: build-docker-image
 
     container:
       image: ghcr.io/hitthesurf/music_player/unit_tests:latest
