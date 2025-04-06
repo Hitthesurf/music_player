@@ -13,4 +13,4 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build And Run Unit Tests
-      run: cd scripts && ./build_and_run_tests.sh unit-tests.gcc.linux unit-tests.gcc.linux
+      run: cd scripts && ./build_and_run_tests.sh unit-tests.gcc.linux
