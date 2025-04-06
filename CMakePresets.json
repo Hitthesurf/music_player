@@ -65,12 +65,20 @@
         {
             "name": "unit-tests.gcc.windows",
             "configurePreset": "unit-tests.gcc.windows"
+        },
+        {
+            "name": "unit-tests.gcc.linux",
+            "configurePreset": "unit-tests.gcc.linux"
         }
     ],
     "testPresets": [
         {
             "name": "unit-tests.gcc.windows",
             "configurePreset": "unit-tests.gcc.windows"
+        },
+        {
+            "name": "unit-tests.gcc.linux",
+            "configurePreset": "unit-tests.gcc.linux"
         }
     ]
 }
