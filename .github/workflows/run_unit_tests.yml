@@ -27,4 +27,6 @@ jobs:
     - name: Upload Unit Test Results
       uses: dorny/test-reporter@v2
       with:
+        name: Unit Tests
         path: ./Logs/*.xml
+        reporter: gtest
