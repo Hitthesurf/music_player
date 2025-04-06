@@ -16,6 +16,8 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
       - name: Confirm toolchain is available
+        run: echo $PATH
+        run: ls /opt/st/stm32cubeclt_1.16.0/GNU-tools-for-STM32/bin
         run: which arm-none-eabi-gcc
       - name: Build Firmware
         run: cd scripts && ./build_stm32h7_firmware.sh
