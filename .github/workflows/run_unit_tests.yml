@@ -25,6 +25,6 @@ jobs:
       run: cd scripts && ./build_and_run_unit_tests.sh unit-tests.gcc.linux
 
     - name: Upload Unit Test Results
-      uses: dorny/test-reporter@v1
+      uses: dorny/test-reporter@v2
       with:
-        files: ./Logs/*.xml
+        path: ./Logs/*.xml
