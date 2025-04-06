@@ -8,7 +8,7 @@ static inline void NO_OP()
 
 void wait()
 {
-  for (size_t i = 0; i < 10000; i++)
+  for (size_t i = 0; i < 1000000; i++)
   {
     NO_OP();
   }
@@ -32,5 +32,6 @@ int main()
     const uint32_t bsr = bit_set ? GPIO_BSRR_BR0 : GPIO_BSRR_BS0;
 
     SET_BIT(GPIOB->BSRR, bsr);
+    wait();
   }
 }
