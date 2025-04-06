@@ -1,0 +1,28 @@
+name: Build STM32 Firmware
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-stm32-firmware:
+    name: Build STM32 Binaries
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/mark-pearson-bluefruit/stm32cubeclt:1.16.0
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Build Firmware
+        run: cd scripts && ./build_stm32h7_firmware.sh
+      - name: Rename and copy files
+        run: |
+          mkdir stm32-firmware
+          cp build/vs.firmware/firmware/targets/nucleoh7a3ziq/nucleoh7a3ziq.elf stm32-firmware/nucleoh7a3ziq.elf
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: stm32-firmware-music-player
+          path: stm32-firmware
