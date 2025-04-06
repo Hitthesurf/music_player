@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - Dockerfile
+      - .devcontainer/unit_tests/Dockerfile
       - .github/workflows/build_docker_container.yml
 
 jobs:
@@ -36,6 +36,6 @@ jobs:
           context: .
           file: .devcontainer/unit_tests/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}.toLowerCase()/music_player_unit_tests:latest
+          tags: ghcr.io/hitthesurf/music_player/unit_tests:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

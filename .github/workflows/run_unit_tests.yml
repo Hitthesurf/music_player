@@ -13,7 +13,7 @@ jobs:
     needs: build-docker-image
 
     container:
-      image: ghcr.io/markpearson/music_player_unit_tests:latest
+      image: ghcr.io/hitthesurf/music_player/unit_tests:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}    
