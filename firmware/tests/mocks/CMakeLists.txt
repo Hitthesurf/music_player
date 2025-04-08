@@ -1,3 +1,5 @@
+add_subdirectory(device)
+
 set(NAME tests.mocks)
 
 add_library(${NAME} INTERFACE)
