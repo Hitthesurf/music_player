@@ -20,7 +20,7 @@ jobs:
       - name: Rename and copy files
         run: |
           mkdir stm32-firmware
-          cp build\vs.firmware\firmware\targets\nucleoh7a3zit6q\nucleoh7a3zit6q.elf stm32-firmware/nucleoh7a3ziq.elf
+          cp build/vs.firmware/firmware/targets/nucleoh7a3zit6q/nucleoh7a3zit6q.elf stm32-firmware/nucleoh7a3ziq.elf
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
