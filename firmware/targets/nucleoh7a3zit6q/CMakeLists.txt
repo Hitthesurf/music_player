@@ -56,7 +56,7 @@ target_include_directories(${NAME} INTERFACE
  ${MX_Include_Dirs}
 )
 
-set(NAME_ELF nucleoh7a3ziq.elf)
+set(NAME_ELF nucleoh7a3zit6q.elf)
 
 add_executable(${NAME_ELF}
  ${MX_Application_Src}
