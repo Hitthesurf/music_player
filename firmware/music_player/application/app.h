@@ -6,7 +6,8 @@ extern "C"
 {
 #endif
 
-void Run();
+void AppInit();
+void AppRun();
 
 #ifdef __cplusplus
 }

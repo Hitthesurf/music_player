@@ -1,8 +1,21 @@
 #include "app.h"
+#include "led/led_one_driver.h"
+#include "led/led_service.h"
 #include "stm32h7xx_hal.h"
 
-void Run()
+using namespace ::application;
+using namespace ::drivers;
+
+static LedOneDriver led_one_driver;
+static LedService led_service(led_one_driver);
+
+void AppInit()
 {
-  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+  led_service.Init();
+}
+
+void AppRun()
+{
+  led_service.RunTask();
   HAL_Delay(500);
 }
