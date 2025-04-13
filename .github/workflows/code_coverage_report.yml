@@ -1,0 +1,39 @@
+name: Code Coverage and Deploy to Pages
+
+on: [push]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-24.04
+
+    container:
+      image: ghcr.io/hitthesurf/music_player/unit_tests:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}   
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run tests and generate coverage report
+        run: 
+
+      - name: Upload coverage artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build/coverage/coverage_website'
+
+  deploy:
+    needs: coverage
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
