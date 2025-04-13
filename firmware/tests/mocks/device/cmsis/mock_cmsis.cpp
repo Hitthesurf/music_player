@@ -20,21 +20,21 @@ void ResetCMSIS()
   state_MODIFY_REG.call_count = 0;
 }
 
-void SET_BIT(uint32_t* reg, uint32_t bit)
+void SET_BIT(uint32_t reg, uint32_t bit)
 {
   state_SET_BIT.call_count++;
   state_SET_BIT.reg = reg;
   state_SET_BIT.bit = bit;
 }
 
-void CLEAR_BIT(uint32_t* reg, uint32_t bit)
+void CLEAR_BIT(uint32_t reg, uint32_t bit)
 {
   state_CLEAR_BIT.call_count++;
   state_CLEAR_BIT.reg = reg;
   state_CLEAR_BIT.bit = bit;
 }
 
-uint32_t READ_BIT(uint32_t* reg, uint32_t bit)
+uint32_t READ_BIT(uint32_t reg, uint32_t bit)
 {
   state_READ_BIT.call_count++;
   state_READ_BIT.reg = reg;
@@ -42,27 +42,27 @@ uint32_t READ_BIT(uint32_t* reg, uint32_t bit)
   return state_READ_BIT.return_value;
 }
 
-void CLEAR_REG(uint32_t* reg)
+void CLEAR_REG(uint32_t reg)
 {
   state_CLEAR_REG.call_count++;
   state_CLEAR_REG.reg = reg;
 }
 
-void WRITE_REG(uint32_t* reg, uint32_t val)
+void WRITE_REG(uint32_t reg, uint32_t val)
 {
   state_WRITE_REG.call_count++;
   state_WRITE_REG.reg = reg;
   state_WRITE_REG.val = val;
 }
 
-uint32_t READ_REG(uint32_t* reg)
+uint32_t READ_REG(uint32_t reg)
 {
   state_READ_REG.call_count++;
   state_READ_REG.reg = reg;
   return state_READ_REG.return_value;
 }
 
-void MODIFY_REG(uint32_t* reg, uint32_t clearMask, uint32_t setMask)
+void MODIFY_REG(uint32_t reg, uint32_t clearMask, uint32_t setMask)
 {
   state_MODIFY_REG.call_count++;
   state_MODIFY_REG.reg = reg;

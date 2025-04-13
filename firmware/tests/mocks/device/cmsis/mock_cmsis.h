@@ -10,21 +10,21 @@ void ResetCMSIS();
 struct State_SET_BIT
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
   uint32_t bit;
 };
 
 struct State_CLEAR_BIT
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
   uint32_t bit;
 };
 
 struct State_READ_BIT
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
   uint32_t bit;
   uint32_t return_value;
 };
@@ -32,27 +32,27 @@ struct State_READ_BIT
 struct State_CLEAR_REG
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
 };
 
 struct State_WRITE_REG
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
   uint32_t val;
 };
 
 struct State_READ_REG
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
   uint32_t return_value;
 };
 
 struct State_MODIFY_REG
 {
   size_t call_count = 0;
-  uint32_t* reg;
+  uint32_t reg;
   uint32_t clearMask;
   uint32_t setMask;
 };
