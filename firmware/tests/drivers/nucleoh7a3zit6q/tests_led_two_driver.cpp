@@ -17,6 +17,9 @@ protected:
   LedTwoDriver m_led_driver;
 };
 
+// TODO: Add tests for bare metal init
+// Need to add some for of queuing
+
 // PB0
 
 TEST_F(LedTwoDriverTests, led_driver_reads_correct_pin)
