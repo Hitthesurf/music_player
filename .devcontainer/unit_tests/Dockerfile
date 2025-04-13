@@ -35,9 +35,10 @@ RUN apt install -y build-essential
 # Get gdb to debug unit tests
 RUN apt install -y gdb
 
-# Get Clang-Format
+# Get Clang-Format & clang-tidy
 RUN apt install -y python3-pip
 RUN pip3 install clang-format
+RUN pip3 install clang-tidy
 
 # Get Code Coverage
 RUN apt install -y lcov
