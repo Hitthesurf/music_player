@@ -46,6 +46,17 @@
             }
         },
         {
+            "name": "unit-tests.coverage.gcc.linux",
+            "toolchainFile": "cmake/toolchain_linux_gcc_coverage.cmake",
+            "inherits": [
+                "default",
+                "linux"
+            ],
+            "cacheVariables": {
+                "TESTS": "ON"
+            }
+        },
+        {
             "name": "unit-tests.gcc.windows",
             "toolchainFile": "cmake/toolchain_windows_gcc.cmake",
             "inherits": [
@@ -72,6 +83,10 @@
             "configurePreset": "unit-tests.gcc.linux"
         },
         {
+            "name": "unit-tests.coverage.gcc.linux",
+            "configurePreset": "unit-tests.coverage.gcc.linux"
+        },
+        {
             "name": "firmware",
             "configurePreset": "firmware"
         }
@@ -84,6 +99,10 @@
         {
             "name": "unit-tests.gcc.linux",
             "configurePreset": "unit-tests.gcc.linux"
+        },
+        {
+            "name": "unit-tests.coverage.gcc.linux",
+            "configurePreset": "unit-tests.coverage.gcc.linux"
         }
     ]
 }

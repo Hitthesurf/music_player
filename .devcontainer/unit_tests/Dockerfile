@@ -38,3 +38,6 @@ RUN apt install -y gdb
 # Get Clang-Format
 RUN apt install -y python3-pip
 RUN pip3 install clang-format
+
+# Get Code Coverage
+RUN apt install -y lcov
