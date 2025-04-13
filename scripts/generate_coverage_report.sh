@@ -23,6 +23,8 @@ echo ">>> Building Project unit tests"
 cmake --preset="$preset_name" --fresh
 cmake --build --preset="$preset_name"
 
+# Delete old coverage data
+find $build_dir -name "*.gcda" -delete
 
 echo ">>> Running Project unit tests"
 ctest --preset="$preset_name" --schedule-random --extra-verbose --output-log "Logs/${preset_name}.log" || true
