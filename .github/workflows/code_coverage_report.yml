@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run tests and generate coverage report
-        run: 
+        run: cd scripts && ./generate_coverage_report.sh unit-tests.coverage.gcc.linux
 
       - name: Upload coverage artifacts
         uses: actions/upload-pages-artifact@v3
