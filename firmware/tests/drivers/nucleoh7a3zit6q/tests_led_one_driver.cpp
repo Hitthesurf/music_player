@@ -7,14 +7,13 @@ using namespace ::drivers;
 class LedOneDriverTests : public testing::Test
 {
 public:
-  LedOneDriverTests() :
-    m_led_driver(m_led_driver)
+  LedOneDriverTests()
   {
     ResetHAL();
   }
 
 protected:
-  LedOneDriver m_led_driver;
+  LedOneDriver m_led_driver{};
 };
 
 // HAL Init is done by auto generated code.

@@ -7,18 +7,17 @@ using namespace ::drivers;
 class LedTwoDriverTests : public testing::Test
 {
 public:
-  LedTwoDriverTests() :
-    m_led_driver(m_led_driver)
+  LedTwoDriverTests()
   {
     ResetCMSIS();
   }
 
 protected:
-  LedTwoDriver m_led_driver;
+  LedTwoDriver m_led_driver{};
 };
 
 // TODO: Add tests for bare metal init
-// Need to add some for of queuing
+// Need to add some form of queuing
 
 // PB0
 
