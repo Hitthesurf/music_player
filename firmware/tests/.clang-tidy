@@ -1,0 +1,12 @@
+InheritParentConfig: true
+
+# Overrides for Google Test violations
+Checks: >
+  -cert-err58-cpp,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-owning-memory,
+  -readability-magic-numbers
+
+CheckOptions:
+  - { key: readability-identifier-naming.AbstractClassPrefix,      value: ""}
+  

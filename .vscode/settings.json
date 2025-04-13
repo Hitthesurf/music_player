@@ -4,6 +4,9 @@
     "cmake.buildBeforeRun": true,
     "cmake.sourceDirectory": "${workspaceFolder}",
     "cmake.useCMakePresets": "always",
+    "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": true,
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.codeAnalysis.runAutomatically": true,
     "files.exclude": {
         "**/.git": true,
         "**/.metadatax": true,

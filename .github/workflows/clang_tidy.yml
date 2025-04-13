@@ -1,0 +1,26 @@
+name: Clang-Format
+
+on: push
+
+permissions:
+  contents: read
+  packages: read  # Needed to pull from GHCR if private
+
+
+jobs:
+  clang-format-check:
+    runs-on: ubuntu-24.04
+
+    container:
+      image: ghcr.io/hitthesurf/music_player/unit_tests:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}    
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run Clang Format
+      run: cd scripts && ./clang_tidy_check.sh unit-tests.gcc.linux
+
