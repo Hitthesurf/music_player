@@ -13,7 +13,7 @@ public:
   }
 
 protected:
-  LedOneDriver m_led_driver{};
+  LedOneDriver m_led_driver;
 };
 
 // HAL Init is done by auto generated code.

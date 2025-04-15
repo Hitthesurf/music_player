@@ -3,7 +3,7 @@
 
 using namespace ::drivers;
 
-LedOneDriver::LedOneDriver() {}
+LedOneDriver::LedOneDriver() = default;
 
 void LedOneDriver::Init() const {}
 

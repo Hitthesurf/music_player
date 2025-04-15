@@ -13,7 +13,7 @@ public:
   }
 
 protected:
-  LedTwoDriver m_led_driver{};
+  LedTwoDriver m_led_driver;
 };
 
 // TODO: Add tests for bare metal init

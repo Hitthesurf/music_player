@@ -3,7 +3,7 @@
 
 using namespace ::drivers;
 
-LedTwoDriver::LedTwoDriver() {}
+LedTwoDriver::LedTwoDriver() = default;
 
 // PB0
 void LedTwoDriver::Init() const
