@@ -4,6 +4,7 @@ set(SOURCES
   app.cpp
   command_line_interface/command_line_interface.cpp
   led/led_service.cpp
+  main_run.cpp
 )
 
 add_library(${NAME} STATIC ${SOURCES})

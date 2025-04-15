@@ -1,14 +1,18 @@
-
 #pragma once
 
-#ifdef __cplusplus
-extern "C"
+#include "led/i_led_service.h"
+
+namespace application
 {
-#endif
 
-void AppInit();
-void AppRun();
+class App
+{
+public:
+  explicit App(ILedService& led_service);
+  void Init();
+  void Run();
 
-#ifdef __cplusplus
+private:
+  ILedService& m_led_service;
+};
 }
-#endif
