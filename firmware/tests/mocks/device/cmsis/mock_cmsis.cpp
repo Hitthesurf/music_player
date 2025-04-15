@@ -62,10 +62,10 @@ uint32_t READ_REG(uint32_t reg)
   return state_READ_REG.return_value;
 }
 
-void MODIFY_REG(uint32_t reg, uint32_t clearMask, uint32_t setMask)
+void MODIFY_REG(uint32_t reg, uint32_t clear_mask, uint32_t set_mask)
 {
   state_MODIFY_REG.call_count++;
   state_MODIFY_REG.reg = reg;
-  state_MODIFY_REG.clearMask = clearMask;
-  state_MODIFY_REG.setMask = setMask;
+  state_MODIFY_REG.clear_mask = clear_mask;
+  state_MODIFY_REG.set_mask = set_mask;
 }

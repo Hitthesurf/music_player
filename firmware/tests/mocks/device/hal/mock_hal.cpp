@@ -1,5 +1,6 @@
 #include "mock_hal.h"
 
+// NOLINTBEGIN
 State_HAL_GPIO_TogglePin state_HAL_GPIO_TogglePin;
 
 void ResetHAL()
@@ -13,3 +14,5 @@ void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
   state_HAL_GPIO_TogglePin.GPIOx = GPIOx;
   state_HAL_GPIO_TogglePin.GPIO_Pin = GPIO_Pin;
 }
+
+// NOLINTEND

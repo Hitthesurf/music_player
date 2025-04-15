@@ -3,6 +3,7 @@
 #include "stm32h7xx_hal.h"
 #include <cstddef>
 
+// NOLINTBEGIN
 void ResetHAL();
 
 struct State_HAL_GPIO_TogglePin
@@ -13,3 +14,4 @@ struct State_HAL_GPIO_TogglePin
 };
 
 extern State_HAL_GPIO_TogglePin state_HAL_GPIO_TogglePin;
+// NOLINTEND

@@ -53,8 +53,8 @@ struct State_MODIFY_REG
 {
   size_t call_count = 0;
   uint32_t reg;
-  uint32_t clearMask;
-  uint32_t setMask;
+  uint32_t clear_mask;
+  uint32_t set_mask;
 };
 
 extern State_SET_BIT state_SET_BIT;

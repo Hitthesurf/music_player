@@ -1,0 +1,6 @@
+InheritParentConfig: true
+
+# Overrides for device mocks
+Checks: >
+  -cppcoreguidelines-avoid-non-const-global-variables
+  

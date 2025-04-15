@@ -1,3 +1,4 @@
+// NOLINTBEGIN
 /**
  ******************************************************************************
  * @file    stm32h7a3xxq.h
@@ -1917,31 +1918,29 @@ typedef struct
   __IO uint32_t AXI_TARG1_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 1 bus matrix issuing functionality register,
                                             Address offset: 0x2008          */
   uint32_t RESERVED2[6];                 /*!< Reserved,                 Address offset: 0x200C-0x2020   */
-  __IO
-    uint32_t
-      AXI_TARG1_FN_MOD2; /*!< AXI interconnect - TARG 1 bus matrix functionality 2 register, Address offset: 0x2024 */
-  uint32_t RESERVED3; /*!< Reserved,                                                                           Address
-                         offset: 0x2028          */
+  __IO uint32_t
+    AXI_TARG1_FN_MOD2; /*!< AXI interconnect - TARG 1 bus matrix functionality 2 register, Address offset: 0x2024 */
+  uint32_t RESERVED3;  /*!< Reserved,                                                                           Address
+                          offset: 0x2028          */
   __IO uint32_t AXI_TARG1_FN_MOD_LB; /*!< AXI interconnect - TARG 1 long burst functionality modification register,
                                         Address offset: 0x202C          */
   uint32_t RESERVED4[54];            /*!< Reserved,            Address offset: 0x2030-0x2104   */
-  __IO uint32_t AXI_TARG1_FN_MOD;    /*!< AXI interconnect - TARG 1 issuing functionality modification register,    Address
-                                        offset: 0x2108          */
-  uint32_t RESERVED5[959];           /*!< Reserved,           Address offset: 0x210C-0x3004   */
+  __IO uint32_t AXI_TARG1_FN_MOD; /*!< AXI interconnect - TARG 1 issuing functionality modification register,    Address
+                                     offset: 0x2108          */
+  uint32_t RESERVED5[959];        /*!< Reserved,           Address offset: 0x210C-0x3004   */
   __IO uint32_t AXI_TARG2_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 2 bus matrix issuing functionality register,
                                             Address offset: 0x3008          */
   uint32_t RESERVED6[6];                 /*!< Reserved,                 Address offset: 0x300C-0x3020   */
-  __IO
-    uint32_t
-      AXI_TARG2_FN_MOD2; /*!< AXI interconnect - TARG 2 bus matrix functionality 2 register, Address offset: 0x3024 */
-  uint32_t RESERVED7; /*!< Reserved,                                                                           Address
-                         offset: 0x3028          */
+  __IO uint32_t
+    AXI_TARG2_FN_MOD2; /*!< AXI interconnect - TARG 2 bus matrix functionality 2 register, Address offset: 0x3024 */
+  uint32_t RESERVED7;  /*!< Reserved,                                                                           Address
+                          offset: 0x3028          */
   __IO uint32_t AXI_TARG2_FN_MOD_LB; /*!< AXI interconnect - TARG 2 long burst functionality modification register,
                                         Address offset: 0x302C          */
   uint32_t RESERVED8[54];            /*!< Reserved,            Address offset: 0x3030-0x3104   */
-  __IO uint32_t AXI_TARG2_FN_MOD;    /*!< AXI interconnect - TARG 2 issuing functionality modification register,    Address
-                                        offset: 0x3108          */
-  uint32_t RESERVED9[959];           /*!< Reserved,           Address offset: 0x310C-0x4004   */
+  __IO uint32_t AXI_TARG2_FN_MOD; /*!< AXI interconnect - TARG 2 issuing functionality modification register,    Address
+                                     offset: 0x3108          */
+  uint32_t RESERVED9[959];        /*!< Reserved,           Address offset: 0x310C-0x4004   */
   __IO uint32_t AXI_TARG3_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 3 bus matrix issuing functionality register,
                                             Address offset: 0x4008          */
   uint32_t RESERVED10[1023];             /*!< Reserved,             Address offset: 0x400C-0x5004   */
@@ -1957,23 +1956,21 @@ typedef struct
   __IO uint32_t AXI_TARG7_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 7 bus matrix issuing functionality register,
                                             Address offset: 0x8008          */
   uint32_t RESERVED14[6];                /*!< Reserved,                Address offset: 0x800C-0x8020   */
-  __IO
-    uint32_t
-      AXI_TARG7_FN_MOD2; /*!< AXI interconnect - TARG 7 bus matrix functionality 2 register, Address offset: 0x8024 */
+  __IO uint32_t
+    AXI_TARG7_FN_MOD2; /*!< AXI interconnect - TARG 7 bus matrix functionality 2 register, Address offset: 0x8024 */
   uint32_t RESERVED15; /*!< Reserved,                                                                           Address
                           offset: 0x8028          */
   __IO uint32_t AXI_TARG7_FN_MOD_LB; /*!< AXI interconnect - TARG 7 long burst functionality modification register,
                                         Address offset: 0x802C          */
   uint32_t RESERVED16[54];           /*!< Reserved,           Address offset: 0x8030-0x8104   */
-  __IO uint32_t AXI_TARG7_FN_MOD;    /*!< AXI interconnect - TARG 7 issuing functionality modification register,    Address
-                                        offset: 0x8108          */
-  uint32_t RESERVED17[959];          /*!< Reserved,          Address offset: 0x810C-0x9004   */
+  __IO uint32_t AXI_TARG7_FN_MOD; /*!< AXI interconnect - TARG 7 issuing functionality modification register,    Address
+                                     offset: 0x8108          */
+  uint32_t RESERVED17[959];       /*!< Reserved,          Address offset: 0x810C-0x9004   */
   __IO uint32_t AXI_TARG8_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 8 bus matrix issuing functionality register,
                                             Address offset: 0x9008          */
   uint32_t RESERVED117[6];               /*!< Reserved,               Address offset: 0x900C-0x9020   */
-  __IO
-    uint32_t
-      AXI_TARG8_FN_MOD2; /*!< AXI interconnect - TARG 8 bus matrix functionality 2 register, Address offset: 0x9024 */
+  __IO uint32_t
+    AXI_TARG8_FN_MOD2; /*!< AXI interconnect - TARG 8 bus matrix functionality 2 register, Address offset: 0x9024 */
   uint32_t RESERVED118[56];       /*!< Reserved,       Address offset: 0x9028-0x9104   */
   __IO uint32_t AXI_TARG8_FN_MOD; /*!< AXI interconnect - TARG 8 issuing functionality modification register, Address
                                      offset: 0x9108          */
@@ -1981,9 +1978,8 @@ typedef struct
   __IO uint32_t AXI_TARG9_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 9 bus matrix issuing functionality register,
                                             Address offset: 0xA008          */
   uint32_t RESERVED120[6];               /*!< Reserved,               Address offset: 0xA00C-0xA020   */
-  __IO
-    uint32_t
-      AXI_TARG9_FN_MOD2; /*!< AXI interconnect - TARG 9 bus matrix functionality 2 register, Address offset: 0xA024 */
+  __IO uint32_t
+    AXI_TARG9_FN_MOD2; /*!< AXI interconnect - TARG 9 bus matrix functionality 2 register, Address offset: 0xA024 */
   uint32_t RESERVED121[56];       /*!< Reserved,       Address offset: 0xA028-0xA104   */
   __IO uint32_t AXI_TARG9_FN_MOD; /*!< AXI interconnect - TARG 9 issuing functionality modification register, Address
                                      offset: 0xA108          */
@@ -1991,9 +1987,8 @@ typedef struct
   __IO uint32_t AXI_TARG10_FN_MOD_ISS_BM; /*!< AXI interconnect - TARG 10 bus matrix issuing functionality register,
                                              Address offset: 0xB008          */
   uint32_t RESERVED123[6];                /*!< Reserved,                Address offset: 0xB00C-0xB020   */
-  __IO
-    uint32_t
-      AXI_TARG10_FN_MOD2; /*!< AXI interconnect - TARG 10 bus matrix functionality 2 register, Address offset: 0xB024 */
+  __IO uint32_t
+    AXI_TARG10_FN_MOD2; /*!< AXI interconnect - TARG 10 bus matrix functionality 2 register, Address offset: 0xB024 */
   uint32_t RESERVED124[56];        /*!< Reserved,        Address offset: 0xB028-0xB104   */
   __IO uint32_t AXI_TARG10_FN_MOD; /*!< AXI interconnect - TARG 10 issuing functionality modification register, Address
                                       offset: 0xB108          */
@@ -2008,48 +2003,48 @@ typedef struct
   uint32_t RESERVED18[53];          /*!< Reserved,          Address offset: 0x4202C-0x420FC */
   __IO uint32_t AXI_INI1_READ_QOS;  /*!< AXI interconnect - INI 1 read QoS register,  Address offset: 0x42100         */
   __IO uint32_t AXI_INI1_WRITE_QOS; /*!< AXI interconnect - INI 1 write QoS register, Address offset: 0x42104         */
-  __IO uint32_t AXI_INI1_FN_MOD;    /*!< AXI interconnect - INI 1 issuing functionality modification register,    Address
-                                       offset: 0x42108         */
-  uint32_t RESERVED19[1021];        /*!< Reserved,        Address offset: 0x4210C-0x430FC */
-  __IO uint32_t AXI_INI2_READ_QOS;  /*!< AXI interconnect - INI 2 read QoS register,  Address offset: 0x43100         */
+  __IO uint32_t AXI_INI1_FN_MOD;   /*!< AXI interconnect - INI 1 issuing functionality modification register,    Address
+                                      offset: 0x42108         */
+  uint32_t RESERVED19[1021];       /*!< Reserved,        Address offset: 0x4210C-0x430FC */
+  __IO uint32_t AXI_INI2_READ_QOS; /*!< AXI interconnect - INI 2 read QoS register,  Address offset: 0x43100         */
   __IO uint32_t AXI_INI2_WRITE_QOS; /*!< AXI interconnect - INI 2 write QoS register, Address offset: 0x43104         */
-  __IO uint32_t AXI_INI2_FN_MOD;    /*!< AXI interconnect - INI 2 issuing functionality modification register,    Address
-                                       offset: 0x43108         */
-  uint32_t RESERVED20[966];         /*!< Reserved,         Address offset: 0x4310C-0x44020 */
-  __IO uint32_t AXI_INI3_FN_MOD2;   /*!< AXI interconnect - INI 3 functionality modification 2 register,   Address offset:
-                                       0x44024         */
+  __IO uint32_t AXI_INI2_FN_MOD;  /*!< AXI interconnect - INI 2 issuing functionality modification register,    Address
+                                     offset: 0x43108         */
+  uint32_t RESERVED20[966];       /*!< Reserved,         Address offset: 0x4310C-0x44020 */
+  __IO uint32_t AXI_INI3_FN_MOD2; /*!< AXI interconnect - INI 3 functionality modification 2 register,   Address offset:
+                                     0x44024         */
   __IO uint32_t
     AXI_INI3_FN_MOD_AHB; /*!< AXI interconnect - INI 3 AHB functionality modification register, Address offset: 0x44028 */
   uint32_t RESERVED21[53];          /*!< Reserved,          Address offset: 0x4402C-0x440FC */
   __IO uint32_t AXI_INI3_READ_QOS;  /*!< AXI interconnect - INI 3 read QoS register,  Address offset: 0x44100         */
   __IO uint32_t AXI_INI3_WRITE_QOS; /*!< AXI interconnect - INI 3 write QoS register, Address offset: 0x44104         */
-  __IO uint32_t AXI_INI3_FN_MOD;    /*!< AXI interconnect - INI 3 issuing functionality modification register,    Address
-                                       offset: 0x44108         */
-  uint32_t RESERVED22[1021];        /*!< Reserved,        Address offset: 0x4410C-0x450FC */
-  __IO uint32_t AXI_INI4_READ_QOS;  /*!< AXI interconnect - INI 4 read QoS register,  Address offset: 0x45100         */
+  __IO uint32_t AXI_INI3_FN_MOD;   /*!< AXI interconnect - INI 3 issuing functionality modification register,    Address
+                                      offset: 0x44108         */
+  uint32_t RESERVED22[1021];       /*!< Reserved,        Address offset: 0x4410C-0x450FC */
+  __IO uint32_t AXI_INI4_READ_QOS; /*!< AXI interconnect - INI 4 read QoS register,  Address offset: 0x45100         */
   __IO uint32_t AXI_INI4_WRITE_QOS; /*!< AXI interconnect - INI 4 write QoS register, Address offset: 0x45104         */
-  __IO uint32_t AXI_INI4_FN_MOD;    /*!< AXI interconnect - INI 4 issuing functionality modification register,    Address
-                                       offset: 0x45108         */
-  uint32_t RESERVED23[1021];        /*!< Reserved,        Address offset: 0x4510C-0x460FC */
-  __IO uint32_t AXI_INI5_READ_QOS;  /*!< AXI interconnect - INI 5 read QoS register,  Address offset: 0x46100         */
+  __IO uint32_t AXI_INI4_FN_MOD;   /*!< AXI interconnect - INI 4 issuing functionality modification register,    Address
+                                      offset: 0x45108         */
+  uint32_t RESERVED23[1021];       /*!< Reserved,        Address offset: 0x4510C-0x460FC */
+  __IO uint32_t AXI_INI5_READ_QOS; /*!< AXI interconnect - INI 5 read QoS register,  Address offset: 0x46100         */
   __IO uint32_t AXI_INI5_WRITE_QOS; /*!< AXI interconnect - INI 5 write QoS register, Address offset: 0x46104         */
-  __IO uint32_t AXI_INI5_FN_MOD;    /*!< AXI interconnect - INI 5 issuing functionality modification register,    Address
-                                       offset: 0x46108         */
-  uint32_t RESERVED24[1021];        /*!< Reserved,        Address offset: 0x4610C-0x470FC */
-  __IO uint32_t AXI_INI6_READ_QOS;  /*!< AXI interconnect - INI 6 read QoS register,  Address offset: 0x47100         */
+  __IO uint32_t AXI_INI5_FN_MOD;   /*!< AXI interconnect - INI 5 issuing functionality modification register,    Address
+                                      offset: 0x46108         */
+  uint32_t RESERVED24[1021];       /*!< Reserved,        Address offset: 0x4610C-0x470FC */
+  __IO uint32_t AXI_INI6_READ_QOS; /*!< AXI interconnect - INI 6 read QoS register,  Address offset: 0x47100         */
   __IO uint32_t AXI_INI6_WRITE_QOS; /*!< AXI interconnect - INI 6 write QoS register, Address offset: 0x47104         */
-  __IO uint32_t AXI_INI6_FN_MOD;    /*!< AXI interconnect - INI 6 issuing functionality modification register,    Address
-                                       offset: 0x47108         */
-  uint32_t RESERVED25[966];         /*!< Reserved,         Address offset: 0x4710C-0x48020 */
-  __IO uint32_t AXI_INI7_FN_MOD2;   /*!< AXI interconnect - INI 7 functionality modification 2 register,   Address offset:
-                                       0x48024         */
+  __IO uint32_t AXI_INI6_FN_MOD;  /*!< AXI interconnect - INI 6 issuing functionality modification register,    Address
+                                     offset: 0x47108         */
+  uint32_t RESERVED25[966];       /*!< Reserved,         Address offset: 0x4710C-0x48020 */
+  __IO uint32_t AXI_INI7_FN_MOD2; /*!< AXI interconnect - INI 7 functionality modification 2 register,   Address offset:
+                                     0x48024         */
   __IO uint32_t
     AXI_INI7_FN_MOD_AHB; /*!< AXI interconnect - INI 7 AHB functionality modification register, Address offset: 0x48028 */
   uint32_t RESERVED26[53];          /*!< Reserved,          Address offset: 0x4802C-0x480FC */
   __IO uint32_t AXI_INI7_READ_QOS;  /*!< AXI interconnect - INI 7 read QoS register,  Address offset: 0x48100         */
   __IO uint32_t AXI_INI7_WRITE_QOS; /*!< AXI interconnect - INI 7 write QoS register, Address offset: 0x48104         */
-  __IO uint32_t AXI_INI7_FN_MOD;    /*!< AXI interconnect - INI 7 issuing functionality modification register,    Address
-                                       offset: 0x48108         */
+  __IO uint32_t AXI_INI7_FN_MOD; /*!< AXI interconnect - INI 7 issuing functionality modification register,    Address
+                                    offset: 0x48108         */
 
 } GPV_TypeDef;
 
@@ -20837,7 +20832,7 @@ typedef struct
 #define USB_OTG_GINTSTS_GINAKEFF              USB_OTG_GINTSTS_GINAKEFF_Msk /*!< Global IN nonperiodic NAK effective            */
 #define USB_OTG_GINTSTS_BOUTNAKEFF_Pos        (7U)
 #define USB_OTG_GINTSTS_BOUTNAKEFF_Msk        (0x1UL << USB_OTG_GINTSTS_BOUTNAKEFF_Pos) /*!< 0x00000080 */
-#define USB_OTG_GINTSTS_BOUTNAKEFF            USB_OTG_GINTSTS_BOUTNAKEFF_Msk            /*!< Global OUT NAK effective            */
+#define USB_OTG_GINTSTS_BOUTNAKEFF            USB_OTG_GINTSTS_BOUTNAKEFF_Msk /*!< Global OUT NAK effective            */
 #define USB_OTG_GINTSTS_ESUSP_Pos             (10U)
 #define USB_OTG_GINTSTS_ESUSP_Msk             (0x1UL << USB_OTG_GINTSTS_ESUSP_Pos) /*!< 0x00000400 */
 #define USB_OTG_GINTSTS_ESUSP                 USB_OTG_GINTSTS_ESUSP_Msk /*!< Early suspend                                  */
@@ -20912,10 +20907,10 @@ typedef struct
 #define USB_OTG_GINTMSK_SOFM          USB_OTG_GINTMSK_SOFM_Msk /*!< Start of frame mask                                 */
 #define USB_OTG_GINTMSK_RXFLVLM_Pos   (4U)
 #define USB_OTG_GINTMSK_RXFLVLM_Msk   (0x1UL << USB_OTG_GINTMSK_RXFLVLM_Pos) /*!< 0x00000010 */
-#define USB_OTG_GINTMSK_RXFLVLM       USB_OTG_GINTMSK_RXFLVLM_Msk            /*!< Receive FIFO nonempty mask            */
+#define USB_OTG_GINTMSK_RXFLVLM       USB_OTG_GINTMSK_RXFLVLM_Msk /*!< Receive FIFO nonempty mask            */
 #define USB_OTG_GINTMSK_NPTXFEM_Pos   (5U)
 #define USB_OTG_GINTMSK_NPTXFEM_Msk   (0x1UL << USB_OTG_GINTMSK_NPTXFEM_Pos) /*!< 0x00000020 */
-#define USB_OTG_GINTMSK_NPTXFEM       USB_OTG_GINTMSK_NPTXFEM_Msk            /*!< Nonperiodic TxFIFO empty mask            */
+#define USB_OTG_GINTMSK_NPTXFEM       USB_OTG_GINTMSK_NPTXFEM_Msk /*!< Nonperiodic TxFIFO empty mask            */
 #define USB_OTG_GINTMSK_GINAKEFFM_Pos (6U)
 #define USB_OTG_GINTMSK_GINAKEFFM_Msk (0x1UL << USB_OTG_GINTMSK_GINAKEFFM_Pos) /*!< 0x00000040 */
 #define USB_OTG_GINTMSK_GINAKEFFM                                                                                      \
@@ -20986,7 +20981,7 @@ typedef struct
   USB_OTG_GINTMSK_CIDSCHGM_Msk /*!< Connector ID status change mask                     */
 #define USB_OTG_GINTMSK_DISCINT_Pos (29U)
 #define USB_OTG_GINTMSK_DISCINT_Msk (0x1UL << USB_OTG_GINTMSK_DISCINT_Pos) /*!< 0x20000000 */
-#define USB_OTG_GINTMSK_DISCINT     USB_OTG_GINTMSK_DISCINT_Msk            /*!< Disconnect detected interrupt mask            */
+#define USB_OTG_GINTMSK_DISCINT     USB_OTG_GINTMSK_DISCINT_Msk /*!< Disconnect detected interrupt mask            */
 #define USB_OTG_GINTMSK_SRQIM_Pos   (30U)
 #define USB_OTG_GINTMSK_SRQIM_Msk   (0x1UL << USB_OTG_GINTMSK_SRQIM_Pos) /*!< 0x40000000 */
 #define USB_OTG_GINTMSK_SRQIM       USB_OTG_GINTMSK_SRQIM_Msk /*!< Session request/new session detected interrupt mask */
@@ -21242,7 +21237,7 @@ typedef struct
 #define USB_OTG_GLPMCFG_LPMEN       USB_OTG_GLPMCFG_LPMEN_Msk /*!< LPM support enable                                     */
 #define USB_OTG_GLPMCFG_LPMACK_Pos  (1U)
 #define USB_OTG_GLPMCFG_LPMACK_Msk  (0x1UL << USB_OTG_GLPMCFG_LPMACK_Pos) /*!< 0x00000002 */
-#define USB_OTG_GLPMCFG_LPMACK      USB_OTG_GLPMCFG_LPMACK_Msk            /*!< LPM Token acknowledge enable            */
+#define USB_OTG_GLPMCFG_LPMACK      USB_OTG_GLPMCFG_LPMACK_Msk /*!< LPM Token acknowledge enable            */
 #define USB_OTG_GLPMCFG_BESL_Pos    (2U)
 #define USB_OTG_GLPMCFG_BESL_Msk    (0xFUL << USB_OTG_GLPMCFG_BESL_Pos) /*!< 0x0000003C */
 #define USB_OTG_GLPMCFG_BESL        USB_OTG_GLPMCFG_BESL_Msk /*!< BESL value received with last ACKed LPM Token          */
@@ -21287,7 +21282,7 @@ typedef struct
   USB_OTG_GLPMCFG_LPMRCNTSTS_Msk /*!< LPM retry count status                                 */
 #define USB_OTG_GLPMCFG_ENBESL_Pos (28U)
 #define USB_OTG_GLPMCFG_ENBESL_Msk (0x1UL << USB_OTG_GLPMCFG_ENBESL_Pos) /*!< 0x10000000 */
-#define USB_OTG_GLPMCFG_ENBESL     USB_OTG_GLPMCFG_ENBESL_Msk            /*!< Enable best effort service latency            */
+#define USB_OTG_GLPMCFG_ENBESL     USB_OTG_GLPMCFG_ENBESL_Msk /*!< Enable best effort service latency            */
 
 /********************  Bit definition forUSB_OTG_DIEPEACHMSK1 register  ********************/
 #define USB_OTG_DIEPEACHMSK1_XFRCM_Pos (0U)
@@ -22461,3 +22456,5 @@ typedef struct
 #endif /* __cplusplus */
 
 #endif /* STM32H7A3xxQ_H */
+
+// NOLINTEND
