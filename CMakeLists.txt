@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 project(music-player CXX C ASM)
 
 option(TESTS "Build unit tests" OFF)
+option(CLANG_TIDY "Build unit tests with clang tidy checks" OFF)
 
 # Export compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
