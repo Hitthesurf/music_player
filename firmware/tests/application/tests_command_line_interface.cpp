@@ -37,7 +37,7 @@ TEST_F(CommandLineInterfaceTests, calls_run_command_when_a_newline_is_recieved)
 
   // Then
   ASSERT_EQ(1, m_commands.state.run_command_call_count);
-  // Check calls with parameter test
+  ASSERT_EQ(memcmp(text.data(), m_commands.state.run_command_keyword.data(), text.size()), 0);
 }
 
 TEST_F(CommandLineInterfaceTests, does_not_call_run_command_when_a_newline_is_not_recieved)

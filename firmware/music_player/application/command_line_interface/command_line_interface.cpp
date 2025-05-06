@@ -13,8 +13,9 @@ void CommandLineInterface::Init() const {}
 
 void CommandLineInterface::RunThreadTask() const
 {
+  std::array<char, KeywordSize> working_buffer{'t', 'e', 's', 't', '\n'};
   if (m_char_queue.Get() == '\n')
   {
-    m_commands.RunCommand();
+    m_commands.RunCommand(working_buffer);
   }
 }
