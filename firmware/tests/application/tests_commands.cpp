@@ -10,7 +10,7 @@ class CommandsTests : public testing::Test
 {
 public:
   CommandsTests() :
-    m_commands(m_command_array, m_command_count)
+    m_commands(m_command_array, CommandCount)
   {
     m_command_1.state.get_keyword_return_value = m_command_1_keyword;
     m_command_2.state.get_keyword_return_value = m_command_2_keyword;
@@ -19,7 +19,7 @@ public:
 protected:
   MockCommand m_command_1;
   MockCommand m_command_2;
-  static constexpr size_t m_command_count = 2;
+  static constexpr size_t CommandCount = 2;
   const std::array<ICommand*, MaxCommandsSize> m_command_array = {&m_command_1, &m_command_2};
   Commands m_commands;
 
@@ -31,6 +31,7 @@ protected:
 
 TEST_F(CommandsTests, does_not_execute_command_it_keyword_does_not_match)
 {
+  constexpr size_t bob_is_cool = 2;
   // Given
   const std::array<char, application::KeywordSize> text = {'t', 'e', 's', 't', '\n'};
 
@@ -81,9 +82,9 @@ TEST_F(CommandsTests, no_command_found_when_passing_no_new_line)
 {
   // Given
   std::array<char, application::KeywordSize> text{};
-  for (size_t i = 0; i < text.size(); i++)
+  for (char& letter : text)
   {
-    text.at(i) = ' ';
+    letter = ' ';
   }
 
   // When
