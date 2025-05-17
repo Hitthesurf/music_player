@@ -17,6 +17,8 @@ public:
   RunCommandResult RunCommand(std::array<char, application::KeywordSize> keyword) const override;
 
 private:
+  size_t GetKeywordValidSize(const std::array<char, application::KeywordSize>& keyword) const;
+
   const size_t m_command_array_count;
   const std::array<ICommand*, MaxCommandsSize> m_commands_array;
 };

@@ -32,10 +32,10 @@ protected:
 TEST_F(CommandsTests, does_not_execute_command_it_keyword_does_not_match)
 {
   // Given
-  std::array<char, application::KeywordSize> text = {'t', 'e', 's', 't', '\n'};
+  const std::array<char, application::KeywordSize> text = {'t', 'e', 's', 't', '\n'};
 
   // When
-  RunCommandResult result = m_commands.RunCommand(text);
+  const RunCommandResult result = m_commands.RunCommand(text);
 
   // Then
   ASSERT_EQ(m_command_1.state.execute_call_count, 0);
@@ -45,4 +45,56 @@ TEST_F(CommandsTests, does_not_execute_command_it_keyword_does_not_match)
   // But still compared
   ASSERT_EQ(m_command_1.state.get_keyword_call_count, 1);
   ASSERT_EQ(m_command_2.state.get_keyword_call_count, 1);
+}
+
+TEST_F(CommandsTests, does_execute_command_if_keyword_has_a_match_1)
+{
+  // When
+  const RunCommandResult result = m_commands.RunCommand(m_command_1_keyword);
+
+  // Then
+  ASSERT_EQ(m_command_1.state.execute_call_count, 1);
+  ASSERT_EQ(m_command_2.state.execute_call_count, 0);
+  ASSERT_EQ(result, RunCommandResult::CommandFound);
+
+  // But still compared
+  ASSERT_EQ(m_command_1.state.get_keyword_call_count, 1);
+  ASSERT_EQ(m_command_2.state.get_keyword_call_count, 0);
+}
+
+TEST_F(CommandsTests, does_execute_command_if_keyword_has_a_match_2)
+{
+  // When
+  const RunCommandResult result = m_commands.RunCommand(m_command_2_keyword);
+
+  // Then
+  ASSERT_EQ(m_command_1.state.execute_call_count, 0);
+  ASSERT_EQ(m_command_2.state.execute_call_count, 1);
+  ASSERT_EQ(result, RunCommandResult::CommandFound);
+
+  // But still compared
+  ASSERT_EQ(m_command_1.state.get_keyword_call_count, 1);
+  ASSERT_EQ(m_command_2.state.get_keyword_call_count, 1);
+}
+
+TEST_F(CommandsTests, no_command_found_when_passing_no_new_line)
+{
+  // Given
+  std::array<char, application::KeywordSize> text{};
+  for (size_t i = 0; i < text.size(); i++)
+  {
+    text.at(i) = ' ';
+  }
+
+  // When
+  const RunCommandResult result = m_commands.RunCommand(text);
+
+  // Then
+  ASSERT_EQ(m_command_1.state.execute_call_count, 0);
+  ASSERT_EQ(m_command_2.state.execute_call_count, 0);
+  ASSERT_EQ(result, RunCommandResult::NoCommandFound);
+
+  // And not compared
+  ASSERT_EQ(m_command_1.state.get_keyword_call_count, 0);
+  ASSERT_EQ(m_command_2.state.get_keyword_call_count, 0);
 }
