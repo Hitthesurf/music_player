@@ -35,10 +35,9 @@
         "sourceFileMap": "${sourceFileMapObj}",
         "stopAtEntry": false,
         "target": "${exec}",
-        "type": "cppvsdbg",
+        "type": "gdb",
         "type.to.use.for.clang": "cppvsdbg",
         "type.to.use.for.gdb": "gdb",
-        "gdbpath": "${env:MINGW_ROOT}/bin/gdb",
         "valuesFormatting": "parseText",
         "linux": {
             "type": "cppdbg",
