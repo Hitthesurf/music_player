@@ -3,6 +3,7 @@ set(NAME tests.application)
 set(SOURCES
   tests_led_service.cpp
   tests_command_line_interface.cpp
+  tests_commands.cpp
 )
 
 add_executable(${NAME} ${SOURCES})

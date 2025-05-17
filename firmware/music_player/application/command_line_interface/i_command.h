@@ -12,10 +12,10 @@ class ICommand
 public:
   virtual ~ICommand() = default;
 
-  virtual void Execute(const size_t argc, char* argv[]) const = 0;
+  virtual void Execute() const = 0;
 
-protected:
-  const std::array<char, KeywordSize> m_keyword;
+  [[nodiscard]]
+  virtual std::array<char, KeywordSize> GetKeyword() const = 0;
 };
 
 }
