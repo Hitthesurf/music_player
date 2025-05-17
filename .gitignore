@@ -10,5 +10,5 @@ build/
 !.vscode/cmake-kits.json
 !.vscode/cmake-variants.yaml
 !.vscode/extensions.json
-!.vscode/launch.template.json
+!.vscode/launch.json
 !.vscode/settings.json
