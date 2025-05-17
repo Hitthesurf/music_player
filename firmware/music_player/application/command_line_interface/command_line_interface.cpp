@@ -11,11 +11,18 @@ CommandLineInterface::CommandLineInterface(ICharQueue& char_queue, ICommands& co
 
 void CommandLineInterface::Init() const {}
 
-void CommandLineInterface::RunThreadTask() const
+void CommandLineInterface::RunThreadTask()
 {
-  std::array<char, KeywordSize> working_buffer{'t', 'e', 's', 't', '\n'};
-  if (m_char_queue.Get() == '\n')
+  const char letter = m_char_queue.Get();
+  m_working_buffer.at(m_working_buffer_valid_items) = letter;
+  m_working_buffer_valid_items++;
+  if (letter == '\n')
   {
-    m_commands.RunCommand(working_buffer);
+    m_commands.RunCommand(m_working_buffer);
+    m_working_buffer_valid_items = 0;
+  }
+  if (m_working_buffer_valid_items == KeywordSize)
+  {
+    m_working_buffer_valid_items = 0;
   }
 }
