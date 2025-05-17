@@ -1,4 +1,5 @@
 add_subdirectory(device)
+add_subdirectory(threads/stubs)
 
 set(NAME tests.mocks)
 

@@ -15,13 +15,13 @@ public:
     state.init_call_count++;
   }
 
-  void Add(char letter) const override
+  void Add(char letter) override
   {
     (void)letter;
     state.add_call_count++;
   }
 
-  char Get() const override
+  char Get() override
   {
     state.get_call_count++;
     const char value = state.get_return_value.front();
