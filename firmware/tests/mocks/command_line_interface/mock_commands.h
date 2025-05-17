@@ -28,7 +28,7 @@ public:
     size_t init_call_count = 0;
     size_t run_command_call_count = 0;
     std::array<char, application::KeywordSize> run_command_keyword{};
-    application::RunCommandResult run_command_return_value = application::RunCommandResult::Success;
+    application::RunCommandResult run_command_return_value = application::RunCommandResult::CommandFound;
   } mutable state{};
 };
 

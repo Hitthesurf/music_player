@@ -6,8 +6,8 @@ namespace application
 
 enum class RunCommandResult : uint8_t
 {
-  Success,
-  Failure
+  CommandFound,
+  NoCommandFound
 };
 
 }

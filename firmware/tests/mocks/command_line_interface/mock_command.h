@@ -19,14 +19,14 @@ public:
   std::array<char, application::KeywordSize> GetKeyword() const override
   {
     state.get_keyword_call_count++;
-    return state.get_keyword_keyword;
+    return state.get_keyword_return_value;
   }
 
   struct StateType
   {
     size_t execute_call_count = 0;
     size_t get_keyword_call_count = 0;
-    std::array<char, application::KeywordSize> get_keyword_keyword{};
+    std::array<char, application::KeywordSize> get_keyword_return_value{};
   } mutable state{};
 };
 
