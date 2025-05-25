@@ -2,6 +2,7 @@ set(NAME music_player.application)
 
 set(SOURCES
   app.cpp
+  char_input.cpp
   char_output.cpp
   command_line_interface/command_line_interface.cpp
   command_line_interface/commands.cpp

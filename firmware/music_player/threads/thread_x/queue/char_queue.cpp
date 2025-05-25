@@ -18,6 +18,12 @@ void CharQueue::Add(char letter)
   tx_queue_send(&m_tx_queue, &message, TX_WAIT_FOREVER);
 }
 
+void CharQueue::AddIsr(char letter)
+{
+  ULONG message = static_cast<ULONG>(letter);
+  tx_queue_send(&m_tx_queue, &message, TX_NO_WAIT);
+}
+
 [[nodiscard]]
 char CharQueue::Get()
 {

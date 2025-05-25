@@ -21,6 +21,12 @@ public:
     state.add_call_count++;
   }
 
+  void AddIsr(char letter) override
+  {
+    state.add_isr_letter.push_back(letter);
+    state.add_isr_call_count++;
+  }
+
   char Get() override
   {
     state.get_call_count++;
@@ -34,6 +40,8 @@ public:
     size_t init_call_count = 0;
     size_t add_call_count = 0;
     std::deque<char> add_letter;
+    size_t add_isr_call_count = 0;
+    std::deque<char> add_isr_letter;
     size_t get_call_count = 0;
     std::deque<char> get_return_value;
   } mutable state{};

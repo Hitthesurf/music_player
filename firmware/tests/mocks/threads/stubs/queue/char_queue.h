@@ -17,6 +17,8 @@ public:
 
   void Add(char letter) override {}
 
+  void AddIsr(char letter) override {}
+
   [[nodiscard]]
   char Get() override
   {
