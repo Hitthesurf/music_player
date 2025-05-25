@@ -15,7 +15,7 @@ public:
     state.init_call_count++;
   }
 
-  void Output(char text) const override
+  void Output(char text) override
   {
     state.output_call_count++;
     state.output_text.push_back(text);

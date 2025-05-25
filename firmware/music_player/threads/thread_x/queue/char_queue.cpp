@@ -14,7 +14,7 @@ void CharQueue::Init() const {}
 
 void CharQueue::Add(char letter)
 {
-  static ULONG message = static_cast<ULONG>(letter);
+  ULONG message = static_cast<ULONG>(letter);
   tx_queue_send(&m_tx_queue, &message, TX_WAIT_FOREVER);
 }
 

@@ -9,7 +9,7 @@
 namespace threads
 {
 
-class CharQueue : ICharQueue
+class CharQueue : public ICharQueue
 {
 public:
   CharQueue(std::array<uint32_t, char_queue_size>& queue_data);

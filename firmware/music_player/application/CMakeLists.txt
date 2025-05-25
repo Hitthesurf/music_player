@@ -7,6 +7,7 @@ set(SOURCES
   command_line_interface/commands.cpp
   led/led_service.cpp
   main_run.cpp
+  setup_thread_tasks.cpp
 )
 
 add_library(${NAME} STATIC ${SOURCES})

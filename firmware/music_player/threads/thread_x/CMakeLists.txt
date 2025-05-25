@@ -2,6 +2,7 @@ set(NAME threads)
 
 set(SOURCES
   queue/char_queue.cpp
+  thread_create/thread_create.cpp
 )
 
 add_library(${NAME} STATIC ${SOURCES})

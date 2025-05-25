@@ -13,6 +13,12 @@ void CharOutput::Init() const {}
 
 void CharOutput::RunThreadTask() const
 {
+  static bool first_time = true;
+  if (first_time)
+  {
+    Output("Hello World\n");
+    first_time = false;
+  }
   const char letter = m_char_queue.Get();
   m_char_output_driver.Output(letter);
 }

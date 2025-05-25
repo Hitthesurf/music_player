@@ -23,7 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "main_run.h"
+#include "setup_thread_tasks.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,8 +34,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define THREAD_STACK_SIZE 2 * 1024 // Stack size for the thread
-#define THREAD_PRIORITY   5        // Thread priority (lower value = higher priority)
 
 /* USER CODE END PD */
 
@@ -45,8 +44,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-static TX_THREAD my_app_thread;
-static ULONG my_app_thread_stack[THREAD_STACK_SIZE / sizeof(ULONG)];
 
 /* USER CODE END PV */
 
@@ -70,9 +67,7 @@ UINT App_ThreadX_Init(VOID* memory_ptr)
   /* USER CODE BEGIN App_ThreadX_Init */
 
   // Create App Threads Here
-  // Temp code to make sure firmware is working
-  tx_thread_create(&my_app_thread, "My App", MainRun, 0, my_app_thread_stack, THREAD_STACK_SIZE, THREAD_PRIORITY,
-    THREAD_PRIORITY, TX_NO_TIME_SLICE, TX_AUTO_START);
+  SetupThreadTasks();
 
   /* USER CODE END App_ThreadX_Init */
 
