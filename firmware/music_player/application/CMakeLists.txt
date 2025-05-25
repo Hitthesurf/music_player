@@ -5,6 +5,7 @@ set(SOURCES
   char_input.cpp
   char_output.cpp
   command_line_interface/command_line_interface.cpp
+  command_line_interface/commands/echo.cpp
   command_line_interface/commands.cpp
   led/led_service.cpp
   main_run.cpp
