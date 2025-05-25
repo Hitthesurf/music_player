@@ -27,6 +27,8 @@ void CharOutput::Output(const char* text) const
 {
   for (size_t i = 0; i < strlen(text); i++)
   {
-    m_char_queue.Add(text[i]);
+    // NOLINTBEGIN
+    m_char_queue.Add(text[i]); // Todo:: Turn to std::array
+    // NOLINTEND
   }
 }
