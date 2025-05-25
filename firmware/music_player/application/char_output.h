@@ -7,7 +7,7 @@
 namespace application
 {
 
-class CharOutput : ICharOutput
+class CharOutput : public ICharOutput
 {
 public:
   CharOutput(threads::ICharQueue& char_queue, drivers::ICharOutputDriver& char_output_driver);
