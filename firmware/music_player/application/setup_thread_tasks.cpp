@@ -1,4 +1,5 @@
 #include "setup_thread_tasks.h"
+#include "char_input.h"
 #include "char_output.h"
 #include "thread_create/thread_create.h"
 #include "uart/uart_driver.h"
@@ -13,6 +14,7 @@ namespace
 {
 
 void CharOutputTask(uint32_t input);
+ICharInput& GetCharInput();
 ICharOutput& GetCharOutput();
 
 void CharOutputTask(uint32_t input)
@@ -25,12 +27,21 @@ void CharOutputTask(uint32_t input)
   }
 }
 
-ICharOutput& GetCharOutput()
+ICharInput& GetCharInput()
 {
-  static UartDriver uart_driver{};
   static std::array<uint32_t, threads::char_queue_size> queue;
   static threads::CharQueue char_queue{queue};
-  static CharOutput char_output(char_queue, uart_driver);
+  static CharInput char_input{char_queue};
+  return char_input;
+}
+
+ICharOutput& GetCharOutput()
+{
+  static ICharInput& char_input = GetCharInput();
+  static UartDriver uart_driver{char_input};
+  static std::array<uint32_t, threads::char_queue_size> queue_output;
+  static threads::CharQueue char_queue_output{queue_output};
+  static CharOutput char_output(char_queue_output, uart_driver);
   return char_output;
 }
 
