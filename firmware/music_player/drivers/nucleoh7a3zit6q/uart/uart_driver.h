@@ -15,7 +15,7 @@ public:
 
 private:
   application::ICharInput& m_char_input;
-  uint8_t m_rx_byte;
+  uint8_t m_rx_byte = 0;
 };
 
 }

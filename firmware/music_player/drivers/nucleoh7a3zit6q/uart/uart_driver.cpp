@@ -4,7 +4,10 @@
 
 using namespace ::drivers;
 
+// NOLINTBEGIN
 static UartDriver* uart_driver = nullptr;
+
+// NOLINTEND
 
 UartDriver::UartDriver(application::ICharInput& char_input) :
   m_char_input(char_input)
