@@ -5,6 +5,7 @@
 #include "command_line_interface/commands.h"
 #include "command_line_interface/commands/echo.h"
 #include "command_line_interface/commands/pause.h"
+#include "command_line_interface/commands/play.h"
 #include "hal_callbacks.h"
 #include "pwm/pwm_driver.h"
 #include "song_player.h"
@@ -84,8 +85,9 @@ ICommands& GetCommands()
 {
   static Echo echo{GetCharQueueOutput()};
   static Pause pause{GetSongPlayer(), GetCharQueueOutput()};
-  static const std::array<ICommand*, MaxCommandsSize> commands_array = {&echo, &pause};
-  constexpr size_t command_array_count = 2;
+  static Play play{GetSongPlayer(), GetCharQueueOutput()};
+  static const std::array<ICommand*, MaxCommandsSize> commands_array = {&echo, &pause, &play};
+  constexpr size_t command_array_count = 3;
   static Commands commands{commands_array, command_array_count};
   return commands;
 }
