@@ -1,6 +1,7 @@
 set(NAME tests.application)
 
 set(SOURCES
+  commands/tests_command_pause.cpp
   tests_char_input.cpp
   tests_char_output.cpp
   tests_led_service.cpp

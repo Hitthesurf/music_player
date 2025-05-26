@@ -4,15 +4,17 @@
 #include "command_line_interface/command_line_interface.h"
 #include "command_line_interface/commands.h"
 #include "command_line_interface/commands/echo.h"
+#include "command_line_interface/commands/pause.h"
 #include "hal_callbacks.h"
 #include "pwm/pwm_driver.h"
 #include "song_player.h"
 #include "thread_create/thread_create.h"
 #include "uart/uart_driver.h"
 
-using namespace application;
-using namespace drivers;
-using namespace threads;
+using namespace ::application;
+using namespace ::application::commands;
+using namespace ::drivers;
+using namespace ::threads;
 
 constexpr size_t stack_size = static_cast<size_t>(2u * 1024u);
 
@@ -81,8 +83,9 @@ ICharOutput& GetCharOutput()
 ICommands& GetCommands()
 {
   static Echo echo{GetCharQueueOutput()};
-  const std::array<ICommand*, MaxCommandsSize> commands_array = {&echo};
-  constexpr size_t command_array_count = 1;
+  static Pause pause{GetSongPlayer(), GetCharQueueOutput()};
+  static const std::array<ICommand*, MaxCommandsSize> commands_array = {&echo, &pause};
+  constexpr size_t command_array_count = 2;
   static Commands commands{commands_array, command_array_count};
   return commands;
 }
