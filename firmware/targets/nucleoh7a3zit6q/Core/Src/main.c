@@ -45,6 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim17;
 
 UART_HandleTypeDef huart3;
 
@@ -58,6 +59,7 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM4_Init(void);
+static void MX_TIM17_Init(void);
 
 /* USER CODE BEGIN PFP */
 
@@ -102,6 +104,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   MX_TIM4_Init();
+  MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
   /* USER CODE END 2 */
 
@@ -220,6 +223,37 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 2 */
   HAL_TIM_MspPostInit(&htim4);
+}
+
+/**
+ * @brief TIM17 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_TIM17_Init(void)
+{
+
+  /* USER CODE BEGIN TIM17_Init 0 */
+
+  /* USER CODE END TIM17_Init 0 */
+
+  /* USER CODE BEGIN TIM17_Init 1 */
+
+  /* USER CODE END TIM17_Init 1 */
+  htim17.Instance = TIM17;
+  htim17.Init.Prescaler = 64 - 1;
+  htim17.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim17.Init.Period = 65535;
+  htim17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim17.Init.RepetitionCounter = 0;
+  htim17.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim17) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM17_Init 2 */
+
+  /* USER CODE END TIM17_Init 2 */
 }
 
 /**
@@ -354,7 +388,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
   {
     TimerAuxPwmPeriodElapsedCallback();
   }
-
+  if (htim->Instance == TIM17)
+  {
+    TimerLoadAudioPeriodElapsedCallback();
+  }
   /* USER CODE END Callback 1 */
 }
 

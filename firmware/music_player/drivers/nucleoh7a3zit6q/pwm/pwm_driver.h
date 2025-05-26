@@ -20,7 +20,8 @@ public:
 private:
   size_t m_clock_frequency;
   TIM_HandleTypeDef* m_timer_aux_pwm;
-  const uint32_t m_left_channel = TIM_CHANNEL_4;
+  TIM_HandleTypeDef* m_timer_load_audio;
+  const uint32_t m_left_channel = TIM_CHANNEL_3;
 };
 
 }

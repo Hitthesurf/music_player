@@ -4,6 +4,8 @@
 #include "command_line_interface/command_line_interface.h"
 #include "command_line_interface/commands.h"
 #include "command_line_interface/commands/echo.h"
+#include "pwm/pwm_driver.h"
+#include "song_player.h"
 #include "thread_create/thread_create.h"
 #include "uart/uart_driver.h"
 
@@ -102,4 +104,10 @@ void SetupThreadTasks()
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> command_line_interface_stack;
   static const ThreadCreate command_line_interface_thread{command_line_interface_stack.data(), stack_size,
     CommandLineInterfaceTask};
+
+  static PWMDriver pwm_driver{};
+  pwm_driver.Config(22050);
+
+  static const SongPlayer song_player{pwm_driver};
+  song_player.Play();
 }

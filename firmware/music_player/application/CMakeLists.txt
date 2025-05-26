@@ -10,6 +10,8 @@ set(SOURCES
   led/led_service.cpp
   main_run.cpp
   setup_thread_tasks.cpp
+  song_player.cpp
+  waveforms/darkstar.cpp
 )
 
 add_library(${NAME} STATIC ${SOURCES})

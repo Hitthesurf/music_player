@@ -4,15 +4,16 @@
 using namespace ::drivers;
 
 PWMDriver::PWMDriver() :
-  m_timer_aux_pwm(&htim4)
+  m_timer_aux_pwm(&htim4),
+  m_timer_load_audio(&htim17)
 {
 }
 
 void PWMDriver::Config(size_t sample_rate)
 {
   // ... prescaler configured in .ioc to give micro second timer ticks
-  // const size_t timer_ticks_per_second = 1000000;
-  // const size_t micro_seconds_per_sample = timer_ticks_per_second / sample_rate;
+  const size_t timer_ticks_per_second = 1000000;
+  const size_t micro_seconds_per_sample = timer_ticks_per_second / sample_rate;
 
   constexpr size_t prescaler_value = 4;
   constexpr size_t audio_resolution_8_bit = 256;
@@ -20,7 +21,7 @@ void PWMDriver::Config(size_t sample_rate)
   __HAL_TIM_SET_AUTORELOAD(m_timer_aux_pwm, audio_resolution_8_bit - 1);
 
   // Note prescaler configured
-  //__HAL_TIM_SET_AUTORELOAD(timerAudio, micro_seconds_per_sample - 1);
+  __HAL_TIM_SET_AUTORELOAD(m_timer_load_audio, micro_seconds_per_sample - 1);
 }
 
 static uint8_t sample_left = 0;
@@ -39,7 +40,7 @@ void PWMDriver::Play()
   HAL_TIM_PWM_Start(m_timer_aux_pwm, m_left_channel);
   // HAL_TIM_PWM_Start(timerAuxPWM, RIGHT_CHANNEL);
   //  HAL_TIM_PWM_Start(timerBuzzerPWM, TIM_CHANNEL_1);
-  // HAL_TIM_Base_Start_IT(timerAudio);
+  HAL_TIM_Base_Start_IT(m_timer_load_audio);
 }
 
 void PWMDriver::Stop()
@@ -48,11 +49,11 @@ void PWMDriver::Stop()
   HAL_TIM_PWM_Stop(m_timer_aux_pwm, m_left_channel);
   // HAL_TIM_PWM_Stop(timerAuxPWM, RIGHT_CHANNEL);
   // HAL_TIM_PWM_Stop(timerBuzzerPWM, TIM_CHANNEL_1);
-  // HAL_TIM_Base_Stop_IT(timerAudio);
+  HAL_TIM_Base_Stop_IT(m_timer_load_audio);
 }
 
-// Timer trigger to load new value (may be the same)
+// Timer trigger to load new value
 void TimerAuxPwmPeriodElapsedCallback()
 {
-  __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, sample_left);
+  __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, sample_left);
 }
