@@ -3,6 +3,7 @@ set(NAME music_player.drivers)
 set(SOURCES
   led/led_one_driver.cpp
   led/led_two_driver.cpp
+  pwm/pwm_driver.cpp
   uart/uart_driver.cpp
 )
 
