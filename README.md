@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hitthesurf_music_player&metric=alert_status&token=67e0d41abbbfd9f1309005d816ca051140862c43)](https://sonarcloud.io/summary/new_code?id=Hitthesurf_music_player)
+
 # This repo showcases my skills and knowledge of
 - Continious Integration/Continious Deployment (Github actions)
 - Linting Tools (Clang-format)
