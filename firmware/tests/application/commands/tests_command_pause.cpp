@@ -24,12 +24,14 @@ protected:
 
 TEST_F(PauseTests, get_keyword_returns_correct_keyword)
 {
+  // Given
+  const std::string text = "pause\n";
+
   // When
-  std::array<char, application::KeywordSize> keyword = m_pause.GetKeyword();
+  const std::array<char, application::KeywordSize> keyword = m_pause.GetKeyword();
 
   // Then
-  std::string keyword_str(keyword.begin(), std::find(keyword.begin(), keyword.end(), '\0'));
-  ASSERT_EQ("pause\n", keyword_str);
+  ASSERT_TRUE(std::equal(text.begin(), text.end(), keyword.begin()));
 }
 
 TEST_F(PauseTests, executing_pause_comamnd_calls_pause_on_song_player)
@@ -44,7 +46,7 @@ TEST_F(PauseTests, executing_pause_comamnd_calls_pause_on_song_player)
 TEST_F(PauseTests, executing_pause_comamnd_outputs_command)
 {
   // Given
-  std::string text = "pause\n";
+  const std::string text = "pause\n";
 
   // When
   m_pause.Execute();

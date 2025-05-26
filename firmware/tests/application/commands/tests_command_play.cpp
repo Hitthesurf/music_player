@@ -24,12 +24,14 @@ protected:
 
 TEST_F(PlayTests, get_keyword_returns_correct_keyword)
 {
+  // Given
+  const std::string text = "play\n";
+
   // When
-  std::array<char, application::KeywordSize> keyword = m_play.GetKeyword();
+  const std::array<char, application::KeywordSize> keyword = m_play.GetKeyword();
 
   // Then
-  std::string keyword_str(keyword.begin(), std::find(keyword.begin(), keyword.end(), '\0'));
-  ASSERT_EQ("play\n", keyword_str);
+  ASSERT_TRUE(std::equal(text.begin(), text.end(), keyword.begin()));
 }
 
 TEST_F(PlayTests, executing_play_comamnd_calls_play_on_song_player)
@@ -44,7 +46,7 @@ TEST_F(PlayTests, executing_play_comamnd_calls_play_on_song_player)
 TEST_F(PlayTests, executing_play_comamnd_outputs_command)
 {
   // Given
-  std::string text = "play\n";
+  const std::string text = "play\n";
 
   // When
   m_play.Execute();

@@ -18,8 +18,10 @@ void PWMDriver::Config(size_t sample_rate)
   constexpr size_t prescaler_value = 4;
   constexpr size_t audio_resolution_8_bit = 256;
   __HAL_TIM_SET_PRESCALER(m_timer_aux_pwm, prescaler_value - 1);
+  // NOLINTNEXTLINE(cppcoreguidelines-avoid-do-while)
   __HAL_TIM_SET_AUTORELOAD(m_timer_aux_pwm, audio_resolution_8_bit - 1);
 
+  // NOLINTNEXTLINE(cppcoreguidelines-avoid-do-while)
   __HAL_TIM_SET_AUTORELOAD(m_timer_load_audio, micro_seconds_per_sample - 1);
 }
 
