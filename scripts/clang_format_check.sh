@@ -3,7 +3,7 @@ set -e
 
 pushd ..
 # List of directories to exclude (space-separated)
-EXCLUDE_DIRS=("build" "firmware/**/drivers/**/device" "targets")
+EXCLUDE_DIRS=("build" "firmware/**/drivers/**/device" "targets" "waveforms")
 
 # List of file extensions to check (space-separated)
 FILE_EXTENSIONS=("cpp" "c" "h" "hpp")
