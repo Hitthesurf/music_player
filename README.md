@@ -6,7 +6,7 @@
 - Static Analysis Tools (Clang Tidy, Sonar Qube)
 - Unit Test Code Coverage Tools (lcov)
 - Unit Tests (Test Driven Development, gtest, mocking)
-- Github pages
+- Github pages to show code coverage report (https://hitthesurf.github.io/music_player/)
 - Dev Containers
 - Bare Matel Programming on STM32 (Simple GPIO)
 - ThreadX (Azure Rtos) (Basic multi threading concepts queues)
