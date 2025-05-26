@@ -1,26 +1,28 @@
 # This repo showcases my skills and knowledge of
 - Continious Integration/Continious Deployment (Github actions)
-- Linting Tools CLang-format
-- Static Analysis Tools Clang Tidy
-- Unit Test Code Coverage Tools
-- Unit Tests (Test Driven Development)
+- Linting Tools (Clang-format)
+- Static Analysis Tools (Clang Tidy, Sonar Qube)
+- Unit Test Code Coverage Tools (lcov)
+- Unit Tests (Test Driven Development, gtest, mocking)
 - Github pages
 - Dev Containers
-- Bare Matel Programming on STM32 (Simple PWM)
-- ThreadX (Azure Rtos) (Basic multi threading concepts semiphores )
-- FileX
+- Bare Matel Programming on STM32 (Simple GPIO)
+- ThreadX (Azure Rtos) (Basic multi threading concepts queues)
+- FileX (ToDo)
 - Using STMCLT
-- Comminication Protocols using HAL (uart, spi, SDMMC)
+- Comminication Protocols using HAL (uart, spi (Todo), SDMMC (Todo))
 - c/c++
 - python
-- bash
+- bash (scripts for github actions)
 - cmake
 - cmake presets
-
-- EA and UML 
-
+- UML (Used for rough working of interfaces) 
 - Unit Test Bare Metal, Unit test HAL
-- Parsing binary files (.Wave files)
+- Parsing binary files (.Wave files) (Todo)
+
+# Project Features
+- Can play song on stored on internal flash via pwm output
+- Can stop, start music via uart terra term command line
 
 # Fixes needed
 - The unit test run does not wait for the docker action to be finished building.
