@@ -33,8 +33,10 @@ ctest --preset="$preset_name" --schedule-random --extra-verbose --output-log "Lo
 mkdir $covarage_dir
 
 # Run lcov
-lcov --directory $build_dir --base-directory . --capture --output-file $covarage_dir/coverage_raw.info
-lcov --remove $covarage_dir/coverage_raw.info '*/tests/*' '*/build/*' '*/usr/*' --output-file $covarage_dir/coverage.info
+lcov --directory $build_dir --base-directory . --capture --output-file $covarage_dir/coverage_test.info
+lcov --directory $build_dir --base-directory . --capture --output-file $covarage_dir/baseline.info --initial
+lcov --add-tracefile $covarage_dir/baseline.info --add-tracefile $covarage_dir/coverage_test.info --output-file $covarage_dir/coverage_total.info
+lcov --remove $covarage_dir/coverage_total.info '*/tests/*' '*/build/*' '*/usr/*' '*/CMakeCXXCompilerId.cpp' '*/CMakeCCompilerId.c' --output-file $covarage_dir/coverage.info
 
 # Generate HTML Coverage Report
 genhtml --demangle-cpp -o $covarage_dir/coverage_website $covarage_dir/coverage.info --prefix $(pwd)
