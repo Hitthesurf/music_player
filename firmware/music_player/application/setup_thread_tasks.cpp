@@ -34,6 +34,7 @@ ICharQueue& GetCharQueueOutput();
 ICharInput& GetCharInput();
 ICharOutput& GetCharOutput();
 ICommands& GetCommands();
+ICharOutputDriver& GetUartDriver();
 ICommandLineInterface& GetCommandLineInterface();
 ILedService& GetLedService();
 ISongDriver& GetSongDriver();
@@ -89,10 +90,15 @@ ICharInput& GetCharInput()
   return char_input;
 }
 
-ICharOutput& GetCharOutput()
+ICharOutputDriver& GetUartDriver()
 {
   static UartDriver uart_driver{GetCharInput()};
-  static CharOutput char_output(GetCharQueueOutput(), uart_driver);
+  return uart_driver;
+}
+
+ICharOutput& GetCharOutput()
+{
+  static CharOutput char_output(GetCharQueueOutput(), GetUartDriver());
   return char_output;
 }
 
@@ -165,4 +171,12 @@ void TimerAuxPwmPeriodElapsedCallback()
 void TimerLoadAudioPeriodElapsedCallback()
 {
   GetSongPlayer().TimerLoadAudioPeriodElapsedCallback();
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
+{
+  if (huart->Instance == USART3)
+  {
+    GetUartDriver().RxIsr();
+  }
 }

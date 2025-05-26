@@ -4,19 +4,17 @@
 
 using namespace ::drivers;
 
-// NOLINTBEGIN
-static UartDriver* uart_driver = nullptr;
-
-// NOLINTEND
-
 UartDriver::UartDriver(application::ICharInput& char_input) :
   m_char_input(char_input)
 {
-  uart_driver = this;
   HAL_UART_Receive_IT(&huart3, &m_rx_byte, 1);
 }
 
-void UartDriver::Init() const {}
+void UartDriver::Init() const
+{
+  // Empty as init is auto generated
+  // Needed for bare metal approach
+}
 
 void UartDriver::Output(char text)
 {
@@ -29,12 +27,4 @@ void UartDriver::RxIsr()
 {
   m_char_input.Input(static_cast<char>(m_rx_byte));
   HAL_UART_Receive_IT(&huart3, &m_rx_byte, 1);
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
-{
-  if (huart->Instance == USART3 && uart_driver != nullptr)
-  {
-    uart_driver->RxIsr();
-  }
 }

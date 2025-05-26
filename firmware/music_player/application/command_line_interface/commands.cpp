@@ -9,8 +9,6 @@ Commands::Commands(const std::array<ICommand*, MaxCommandsSize> commands_array, 
 {
 }
 
-void Commands::Init() const {}
-
 RunCommandResult Commands::RunCommand(std::array<char, application::KeywordSize> keyword) const
 {
   const size_t keyword_valid_size = GetKeywordValidSize(keyword);

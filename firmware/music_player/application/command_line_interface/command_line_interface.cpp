@@ -9,8 +9,6 @@ CommandLineInterface::CommandLineInterface(ICharQueue& char_queue, ICommands& co
 {
 }
 
-void CommandLineInterface::Init() const {}
-
 void CommandLineInterface::RunThreadTask()
 {
   const char letter = m_char_queue.Get();

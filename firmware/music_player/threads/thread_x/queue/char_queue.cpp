@@ -10,8 +10,6 @@ CharQueue::CharQueue(std::array<uint32_t, char_queue_size>& queue_data)
   tx_queue_create(&m_tx_queue, name, message_size, queue_data.data(), queue_data.size() * sizeof(uint32_t));
 }
 
-void CharQueue::Init() const {}
-
 void CharQueue::Add(char letter)
 {
   ULONG message = static_cast<ULONG>(letter);

@@ -12,7 +12,6 @@ class CharOutput : public ICharOutput
 public:
   CharOutput(threads::ICharQueue& char_queue, drivers::ICharOutputDriver& char_output_driver);
 
-  void Init() const override;
   void RunThreadTask() const override;
   void Output(const char* text) const override;
 

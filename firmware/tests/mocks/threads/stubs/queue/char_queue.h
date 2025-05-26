@@ -11,13 +11,22 @@ namespace threads
 class CharQueue : public ICharQueue
 {
 public:
-  CharQueue(std::array<uint32_t, char_queue_size>& queue_data) {}
+  explicit CharQueue(std::array<uint32_t, char_queue_size>& queue_data) {}
 
-  void Init() const override {}
+  void Init() const override
+  {
+    // Stub: no implementation needed for tests.
+  }
 
-  void Add(char letter) override {}
+  void Add(char letter) override
+  {
+    // Stub: no implementation needed for tests.
+  }
 
-  void AddIsr(char letter) override {}
+  void AddIsr(char letter) override
+  {
+    // Stub: no implementation needed for tests.
+  }
 
   [[nodiscard]]
   char Get() override

@@ -13,7 +13,7 @@ class Commands : public ICommands
 public:
   Commands(const std::array<ICommand*, MaxCommandsSize> commands_array, size_t command_array_count);
 
-  void Init() const override;
+  void Init() const override {};
   RunCommandResult RunCommand(std::array<char, application::KeywordSize> keyword) const override;
 
 private:

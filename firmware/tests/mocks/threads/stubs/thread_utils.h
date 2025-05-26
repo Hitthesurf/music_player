@@ -12,7 +12,10 @@ class ThreadUtils : public IThreadUtils
 public:
   ThreadUtils() = default;
 
-  void Sleep(size_t sleep_ms) override {}
+  void Sleep(size_t sleep_ms) override
+  {
+    // Stub: no implementation needed for tests.
+  }
 };
 
 }

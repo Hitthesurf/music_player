@@ -9,8 +9,6 @@ CharOutput::CharOutput(threads::ICharQueue& char_queue, drivers::ICharOutputDriv
 {
 }
 
-void CharOutput::Init() const {}
-
 void CharOutput::RunThreadTask() const
 {
   static bool first_time = true;

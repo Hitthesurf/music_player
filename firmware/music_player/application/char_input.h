@@ -9,7 +9,7 @@ namespace application
 class CharInput : public ICharInput
 {
 public:
-  CharInput(threads::ICharQueue& char_queue);
+  explicit CharInput(threads::ICharQueue& char_queue);
   void Input(char letter) override;
 
 private:

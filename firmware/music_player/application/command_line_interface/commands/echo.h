@@ -10,7 +10,7 @@ namespace application
 class Echo : public ICommand
 {
 public:
-  Echo(threads::ICharQueue& char_output_queue);
+  explicit Echo(threads::ICharQueue& char_output_queue);
 
   void Execute() const override;
   std::array<char, KeywordSize> GetKeyword() const override;

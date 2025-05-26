@@ -21,10 +21,16 @@ public:
     state.output_text.push_back(text);
   }
 
+  void RxIsr() override
+  {
+    state.rx_isr_call_count++;
+  }
+
   struct StateType
   {
     size_t init_call_count = 0;
     size_t output_call_count = 0;
+    size_t rx_isr_call_count = 0;
     std::deque<char> output_text;
   } mutable state{};
 };

@@ -13,7 +13,7 @@ class CommandLineInterface : public ICommandLineInterface
 public:
   CommandLineInterface(threads::ICharQueue& char_queue, ICommands& commands);
 
-  void Init() const override;
+  void Init() const override {};
   void RunThreadTask() override;
 
 private:

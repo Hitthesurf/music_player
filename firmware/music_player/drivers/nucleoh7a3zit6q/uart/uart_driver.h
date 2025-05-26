@@ -8,10 +8,10 @@ namespace drivers
 class UartDriver : public ICharOutputDriver
 {
 public:
-  UartDriver(application::ICharInput& char_input);
+  explicit UartDriver(application::ICharInput& char_input);
   void Init() const override;
   void Output(char text) override;
-  void RxIsr();
+  void RxIsr() override;
 
 private:
   application::ICharInput& m_char_input;

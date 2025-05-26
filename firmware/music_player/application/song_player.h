@@ -8,7 +8,7 @@ namespace application
 class SongPlayer : public ISongPlayer
 {
 public:
-  SongPlayer(drivers::ISongDriver& song_driver);
+  explicit SongPlayer(drivers::ISongDriver& song_driver);
   void NextNote() override;
   void Play() const override;
   void Pause() const override;
