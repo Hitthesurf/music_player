@@ -38,6 +38,11 @@ public:
     state.stop_call_count++;
   }
 
+  void TimerAuxPwmPeriodElapsedCallback()
+  {
+    state.callback_call_count++;
+  }
+
   struct StateType
   {
     size_t config_call_count = 0;
@@ -45,6 +50,7 @@ public:
     size_t load_right_call_count = 0;
     size_t play_call_count = 0;
     size_t stop_call_count = 0;
+    size_t callback_call_count = 0;
 
     size_t last_sample_rate = 0;
     uint8_t last_left_value = 0;

@@ -46,3 +46,13 @@ TEST_F(SongPlayerTests, next_note_loads_next_note_into_song_driver)
   ASSERT_EQ(1, m_song_driver.state.load_left_call_count);
   ASSERT_EQ(1, m_song_driver.state.load_right_call_count);
 }
+
+TEST_F(SongPlayerTests, callback_loads_next_note_into_song_driver)
+{
+  // When
+  m_song_player.TimerLoadAudioPeriodElapsedCallback();
+
+  // Then
+  ASSERT_EQ(1, m_song_driver.state.load_left_call_count);
+  ASSERT_EQ(1, m_song_driver.state.load_right_call_count);
+}

@@ -20,9 +20,9 @@
 #include "main.h"
 #include "app_threadx.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "hal_callbacks.h"
 #include "hal_handles.h"
 
 /* USER CODE END Includes */

@@ -20,16 +20,13 @@ void PWMDriver::Config(size_t sample_rate)
   __HAL_TIM_SET_PRESCALER(m_timer_aux_pwm, prescaler_value - 1);
   __HAL_TIM_SET_AUTORELOAD(m_timer_aux_pwm, audio_resolution_8_bit - 1);
 
-  // Note prescaler configured
   __HAL_TIM_SET_AUTORELOAD(m_timer_load_audio, micro_seconds_per_sample - 1);
 }
-
-static uint8_t sample_left = 0;
 
 void PWMDriver::LoadLeft(uint8_t value)
 {
   // Save value to static var
-  sample_left = value;
+  m_sample_left = value;
 }
 
 void PWMDriver::LoadRight(uint8_t value) {}
@@ -52,8 +49,7 @@ void PWMDriver::Stop()
   HAL_TIM_Base_Stop_IT(m_timer_load_audio);
 }
 
-// Timer trigger to load new value
-void TimerAuxPwmPeriodElapsedCallback()
+void PWMDriver::TimerAuxPwmPeriodElapsedCallback()
 {
-  __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, sample_left);
+  __HAL_TIM_SET_COMPARE(m_timer_aux_pwm, m_left_channel, m_sample_left);
 }

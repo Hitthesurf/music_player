@@ -4,6 +4,7 @@
 #include "command_line_interface/command_line_interface.h"
 #include "command_line_interface/commands.h"
 #include "command_line_interface/commands/echo.h"
+#include "hal_callbacks.h"
 #include "pwm/pwm_driver.h"
 #include "song_player.h"
 #include "thread_create/thread_create.h"
@@ -27,6 +28,8 @@ ICharInput& GetCharInput();
 ICharOutput& GetCharOutput();
 ICommands& GetCommands();
 ICommandLineInterface& GetCommandLineInterface();
+ISongDriver& GetSongDriver();
+ISongPlayer& GetSongPlayer();
 
 void CharOutputTask(uint32_t input)
 {
@@ -90,6 +93,18 @@ ICommandLineInterface& GetCommandLineInterface()
   return command_line_interface;
 }
 
+ISongDriver& GetSongDriver()
+{
+  static PWMDriver pwm_driver{};
+  return pwm_driver;
+}
+
+ISongPlayer& GetSongPlayer()
+{
+  static SongPlayer song_player{GetSongDriver()};
+  return song_player;
+}
+
 }
 
 void SetupThreadTasks()
@@ -105,9 +120,17 @@ void SetupThreadTasks()
   static const ThreadCreate command_line_interface_thread{command_line_interface_stack.data(), stack_size,
     CommandLineInterfaceTask};
 
-  static PWMDriver pwm_driver{};
-  pwm_driver.Config(22050);
+  GetSongDriver().Config(22050);
+  GetSongPlayer().Play();
+}
 
-  static const SongPlayer song_player{pwm_driver};
-  song_player.Play();
+// Handle Hal callbacks
+void TimerAuxPwmPeriodElapsedCallback()
+{
+  GetSongDriver().TimerAuxPwmPeriodElapsedCallback();
+}
+
+void TimerLoadAudioPeriodElapsedCallback()
+{
+  GetSongPlayer().TimerLoadAudioPeriodElapsedCallback();
 }

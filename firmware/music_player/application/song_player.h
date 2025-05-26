@@ -12,6 +12,7 @@ public:
   void NextNote() override;
   void Play() const override;
   void Pause() const override;
+  void TimerLoadAudioPeriodElapsedCallback() override;
 
 private:
   drivers::ISongDriver& m_song_driver;

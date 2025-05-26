@@ -15,6 +15,7 @@ public:
   virtual void LoadRight(uint8_t value) = 0;
   virtual void Play() = 0;
   virtual void Stop() = 0;
+  virtual void TimerAuxPwmPeriodElapsedCallback() = 0;
 };
 
 }
