@@ -15,8 +15,9 @@ void LedService::Init() const
   m_led_two_driver.Init();
 }
 
-void LedService::RunTask() const
+void LedService::RunTask()
 {
   m_led_one_driver.Toggle();
   m_led_two_driver.Toggle();
+  m_thread_utils.Sleep(500);
 }

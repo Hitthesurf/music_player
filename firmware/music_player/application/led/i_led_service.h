@@ -10,7 +10,7 @@ public:
 
   virtual void Init() const = 0;
 
-  virtual void RunTask() const = 0;
+  virtual void RunTask() = 0;
 };
 
 }

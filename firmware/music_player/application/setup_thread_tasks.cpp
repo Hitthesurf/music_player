@@ -7,6 +7,9 @@
 #include "command_line_interface/commands/pause.h"
 #include "command_line_interface/commands/play.h"
 #include "hal_callbacks.h"
+#include "led/led_one_driver.h"
+#include "led/led_service.h"
+#include "led/led_two_driver.h"
 #include "pwm/pwm_driver.h"
 #include "song_player.h"
 #include "thread_create/thread_create.h"
@@ -24,6 +27,7 @@ namespace
 
 void CharOutputTask(uint32_t input);
 void CommandLineInterfaceTask(uint32_t input);
+void LedServiceTask(uint32_t input);
 
 ICharQueue& GetCharQueueInput();
 ICharQueue& GetCharQueueOutput();
@@ -31,6 +35,7 @@ ICharInput& GetCharInput();
 ICharOutput& GetCharOutput();
 ICommands& GetCommands();
 ICommandLineInterface& GetCommandLineInterface();
+ILedService& GetLedService();
 ISongDriver& GetSongDriver();
 ISongPlayer& GetSongPlayer();
 
@@ -51,6 +56,16 @@ void CommandLineInterfaceTask(uint32_t input)
   while (true)
   {
     command_line_interface.RunThreadTask();
+  }
+}
+
+void LedServiceTask(uint32_t input)
+{
+  (void)input;
+  ILedService& led_service = GetLedService();
+  while (true)
+  {
+    led_service.RunTask();
   }
 }
 
@@ -98,6 +113,14 @@ ICommandLineInterface& GetCommandLineInterface()
   return command_line_interface;
 }
 
+ILedService& GetLedService()
+{
+  static LedOneDriver led_one_driver;
+  static LedTwoDriver led_two_driver;
+  static LedService led_service{led_one_driver, led_two_driver};
+  return led_service;
+}
+
 ISongDriver& GetSongDriver()
 {
   static PWMDriver pwm_driver{};
@@ -117,6 +140,7 @@ void SetupThreadTasks()
   // Need to call to init
   (void)GetCharOutput();
   (void)GetCommandLineInterface();
+  GetLedService().Init();
 
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> char_output_stack;
   static const ThreadCreate char_output_thread{char_output_stack.data(), stack_size, CharOutputTask};
@@ -124,6 +148,9 @@ void SetupThreadTasks()
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> command_line_interface_stack;
   static const ThreadCreate command_line_interface_thread{command_line_interface_stack.data(), stack_size,
     CommandLineInterfaceTask};
+
+  static std::array<uint32_t, stack_size / sizeof(uint32_t)> led_service_stack;
+  static const ThreadCreate led_service_stack_thread{led_service_stack.data(), stack_size, LedServiceTask};
 
   GetSongDriver().Config(22050);
   GetSongPlayer().Play();
