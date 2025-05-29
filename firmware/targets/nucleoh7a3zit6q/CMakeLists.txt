@@ -12,10 +12,14 @@
 set(MX_Include_Dirs
     ./Core/Inc
     ./AZURE_RTOS/App
+    ./FileX/App
+    ./FileX/Target
     ./Drivers/STM32H7xx_HAL_Driver/Inc
     ./Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
     ./Drivers/CMSIS/Device/ST/STM32H7xx/Include
     ./Drivers/CMSIS/Include
+    ./Middlewares/ST/filex/common/inc/
+    ./Middlewares/ST/filex/ports/generic/inc/
     ./Middlewares/ST/threadx/common/inc/
     ./Middlewares/ST/threadx/ports/cortex_m7/gnu/inc/
     ./Middlewares/ST/threadx/utility/low_power/
@@ -24,6 +28,8 @@ set(MX_Include_Dirs
 # STM32CubeMX generated application sources
 set(MX_Application_Src
     ./AZURE_RTOS/App/app_azure_rtos.c
+    ./FileX/App/app_filex.c
+    ./FileX/Target/fx_stm32_sd_driver_glue.c
     ./Core/Src/tx_initialize_low_level.S
     ./Core/Src/main.c
     ./Core/Src/app_threadx.c
@@ -56,6 +62,12 @@ set(STM32_Drivers_Src
     ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c
     ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c
     ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c
+    ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c
+    ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_delayblock.c
+    ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c
+    ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd_ex.c
+    ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mmc.c
+    ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mmc_ex.c
     ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c
     ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c
 )
@@ -63,6 +75,243 @@ set(STM32_Drivers_Src
 # Drivers Midllewares
 
 
+set(Interfaces_Src
+    ./Middlewares/ST/filex/common/drivers/fx_stm32_sd_driver.c
+)
+set(FileX_Src
+    ./Middlewares/ST/filex/common/src/fx_directory_attributes_read.c
+    ./Middlewares/ST/filex/common/src/fx_directory_attributes_set.c
+    ./Middlewares/ST/filex/common/src/fx_directory_create.c
+    ./Middlewares/ST/filex/common/src/fx_directory_default_get.c
+    ./Middlewares/ST/filex/common/src/fx_directory_default_get_copy.c
+    ./Middlewares/ST/filex/common/src/fx_directory_default_set.c
+    ./Middlewares/ST/filex/common/src/fx_directory_delete.c
+    ./Middlewares/ST/filex/common/src/fx_directory_entry_read.c
+    ./Middlewares/ST/filex/common/src/fx_directory_entry_write.c
+    ./Middlewares/ST/filex/common/src/fx_directory_exFAT_entry_read.c
+    ./Middlewares/ST/filex/common/src/fx_directory_exFAT_entry_write.c
+    ./Middlewares/ST/filex/common/src/fx_directory_exFAT_free_search.c
+    ./Middlewares/ST/filex/common/src/fx_directory_exFAT_unicode_entry_write.c
+    ./Middlewares/ST/filex/common/src/fx_directory_first_entry_find.c
+    ./Middlewares/ST/filex/common/src/fx_directory_first_full_entry_find.c
+    ./Middlewares/ST/filex/common/src/fx_directory_free_search.c
+    ./Middlewares/ST/filex/common/src/fx_directory_information_get.c
+    ./Middlewares/ST/filex/common/src/fx_directory_local_path_clear.c
+    ./Middlewares/ST/filex/common/src/fx_directory_local_path_get.c
+    ./Middlewares/ST/filex/common/src/fx_directory_local_path_get_copy.c
+    ./Middlewares/ST/filex/common/src/fx_directory_local_path_restore.c
+    ./Middlewares/ST/filex/common/src/fx_directory_local_path_set.c
+    ./Middlewares/ST/filex/common/src/fx_directory_long_name_get.c
+    ./Middlewares/ST/filex/common/src/fx_directory_long_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fx_directory_name_extract.c
+    ./Middlewares/ST/filex/common/src/fx_directory_name_test.c
+    ./Middlewares/ST/filex/common/src/fx_directory_next_entry_find.c
+    ./Middlewares/ST/filex/common/src/fx_directory_next_full_entry_find.c
+    ./Middlewares/ST/filex/common/src/fx_directory_rename.c
+    ./Middlewares/ST/filex/common/src/fx_directory_search.c
+    ./Middlewares/ST/filex/common/src/fx_directory_short_name_get.c
+    ./Middlewares/ST/filex/common/src/fx_directory_short_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_add_bitmap_log.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_add_checksum_log.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_add_dir_log.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_add_FAT_log.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_apply_logs.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_calculate_checksum.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_cleanup_FAT_chain.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_create_log_file.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_enable.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_read_directory_sector.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_read_FAT.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_read_log_file.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_recover.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_reset_log_file.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_set_FAT_chain.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_transaction_end.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_transaction_fail.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_transaction_start.c
+    ./Middlewares/ST/filex/common/src/fx_fault_tolerant_write_log_file.c
+    ./Middlewares/ST/filex/common/src/fx_file_allocate.c
+    ./Middlewares/ST/filex/common/src/fx_file_attributes_read.c
+    ./Middlewares/ST/filex/common/src/fx_file_attributes_set.c
+    ./Middlewares/ST/filex/common/src/fx_file_best_effort_allocate.c
+    ./Middlewares/ST/filex/common/src/fx_file_close.c
+    ./Middlewares/ST/filex/common/src/fx_file_create.c
+    ./Middlewares/ST/filex/common/src/fx_file_date_time_set.c
+    ./Middlewares/ST/filex/common/src/fx_file_delete.c
+    ./Middlewares/ST/filex/common/src/fx_file_extended_allocate.c
+    ./Middlewares/ST/filex/common/src/fx_file_extended_best_effort_allocate.c
+    ./Middlewares/ST/filex/common/src/fx_file_extended_relative_seek.c
+    ./Middlewares/ST/filex/common/src/fx_file_extended_seek.c
+    ./Middlewares/ST/filex/common/src/fx_file_extended_truncate.c
+    ./Middlewares/ST/filex/common/src/fx_file_extended_truncate_release.c
+    ./Middlewares/ST/filex/common/src/fx_file_open.c
+    ./Middlewares/ST/filex/common/src/fx_file_read.c
+    ./Middlewares/ST/filex/common/src/fx_file_relative_seek.c
+    ./Middlewares/ST/filex/common/src/fx_file_rename.c
+    ./Middlewares/ST/filex/common/src/fx_file_seek.c
+    ./Middlewares/ST/filex/common/src/fx_file_truncate.c
+    ./Middlewares/ST/filex/common/src/fx_file_truncate_release.c
+    ./Middlewares/ST/filex/common/src/fx_file_write.c
+    ./Middlewares/ST/filex/common/src/fx_file_write_notify_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_abort.c
+    ./Middlewares/ST/filex/common/src/fx_media_boot_info_extract.c
+    ./Middlewares/ST/filex/common/src/fx_media_cache_invalidate.c
+    ./Middlewares/ST/filex/common/src/fx_media_check.c
+    ./Middlewares/ST/filex/common/src/fx_media_check_FAT_chain_check.c
+    ./Middlewares/ST/filex/common/src/fx_media_check_lost_cluster_check.c
+    ./Middlewares/ST/filex/common/src/fx_media_close.c
+    ./Middlewares/ST/filex/common/src/fx_media_close_notify_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_exFAT_format.c
+    ./Middlewares/ST/filex/common/src/fx_media_extended_space_available.c
+    ./Middlewares/ST/filex/common/src/fx_media_flush.c
+    ./Middlewares/ST/filex/common/src/fx_media_format.c
+    ./Middlewares/ST/filex/common/src/fx_media_format_oem_name_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_format_type_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_format_volume_id_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_open.c
+    ./Middlewares/ST/filex/common/src/fx_media_open_notify_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_read.c
+    ./Middlewares/ST/filex/common/src/fx_media_space_available.c
+    ./Middlewares/ST/filex/common/src/fx_media_volume_get.c
+    ./Middlewares/ST/filex/common/src/fx_media_volume_get_extended.c
+    ./Middlewares/ST/filex/common/src/fx_media_volume_set.c
+    ./Middlewares/ST/filex/common/src/fx_media_write.c
+    ./Middlewares/ST/filex/common/src/fx_partition_offset_calculate.c
+    ./Middlewares/ST/filex/common/src/fx_system_date_get.c
+    ./Middlewares/ST/filex/common/src/fx_system_date_set.c
+    ./Middlewares/ST/filex/common/src/fx_system_initialize.c
+    ./Middlewares/ST/filex/common/src/fx_system_time_get.c
+    ./Middlewares/ST/filex/common/src/fx_system_time_set.c
+    ./Middlewares/ST/filex/common/src/fx_system_timer_entry.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_directory_create.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_directory_entry_change.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_directory_entry_read.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_directory_rename.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_directory_search.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_file_create.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_file_rename.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_length_get.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_length_get_extended.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_name_get.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_short_name_get.c
+    ./Middlewares/ST/filex/common/src/fx_unicode_short_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fx_utility_16_unsigned_read.c
+    ./Middlewares/ST/filex/common/src/fx_utility_16_unsigned_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_32_unsigned_read.c
+    ./Middlewares/ST/filex/common/src/fx_utility_32_unsigned_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_64_unsigned_read.c
+    ./Middlewares/ST/filex/common/src/fx_utility_64_unsigned_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_absolute_path_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_allocate_new_cluster.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_bitmap_cache_prepare.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_bitmap_cache_update.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_bitmap_flush.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_bitmap_free_cluster_find.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_bitmap_initialize.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_bitmap_start_sector_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_cluster_free.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_cluster_state_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_cluster_state_set.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_geometry_check.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_name_hash_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_size_calculate.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_system_area_checksum_verify.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_system_area_checksum_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_system_area_format.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_system_sector_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_unicode_name_hash_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_exFAT_upcase_table.c
+    ./Middlewares/ST/filex/common/src/fx_utility_FAT_entry_read.c
+    ./Middlewares/ST/filex/common/src/fx_utility_FAT_entry_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_FAT_flush.c
+    ./Middlewares/ST/filex/common/src/fx_utility_FAT_map_flush.c
+    ./Middlewares/ST/filex/common/src/fx_utility_FAT_sector_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_logical_sector_cache_entry_read.c
+    ./Middlewares/ST/filex/common/src/fx_utility_logical_sector_flush.c
+    ./Middlewares/ST/filex/common/src/fx_utility_logical_sector_read.c
+    ./Middlewares/ST/filex/common/src/fx_utility_logical_sector_write.c
+    ./Middlewares/ST/filex/common/src/fx_utility_memory_copy.c
+    ./Middlewares/ST/filex/common/src/fx_utility_memory_set.c
+    ./Middlewares/ST/filex/common/src/fx_utility_string_length_get.c
+    ./Middlewares/ST/filex/common/src/fx_utility_token_length_get.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_attributes_read.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_attributes_set.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_create.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_default_get.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_default_get_copy.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_default_set.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_delete.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_first_entry_find.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_first_full_entry_find.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_information_get.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_local_path_clear.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_local_path_get.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_local_path_get_copy.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_local_path_restore.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_local_path_set.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_long_name_get.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_long_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_name_test.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_next_entry_find.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_next_full_entry_find.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_rename.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_short_name_get.c
+    ./Middlewares/ST/filex/common/src/fxe_directory_short_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fxe_fault_tolerant_enable.c
+    ./Middlewares/ST/filex/common/src/fxe_file_allocate.c
+    ./Middlewares/ST/filex/common/src/fxe_file_attributes_read.c
+    ./Middlewares/ST/filex/common/src/fxe_file_attributes_set.c
+    ./Middlewares/ST/filex/common/src/fxe_file_best_effort_allocate.c
+    ./Middlewares/ST/filex/common/src/fxe_file_close.c
+    ./Middlewares/ST/filex/common/src/fxe_file_create.c
+    ./Middlewares/ST/filex/common/src/fxe_file_date_time_set.c
+    ./Middlewares/ST/filex/common/src/fxe_file_delete.c
+    ./Middlewares/ST/filex/common/src/fxe_file_extended_allocate.c
+    ./Middlewares/ST/filex/common/src/fxe_file_extended_best_effort_allocate.c
+    ./Middlewares/ST/filex/common/src/fxe_file_extended_relative_seek.c
+    ./Middlewares/ST/filex/common/src/fxe_file_extended_seek.c
+    ./Middlewares/ST/filex/common/src/fxe_file_extended_truncate.c
+    ./Middlewares/ST/filex/common/src/fxe_file_extended_truncate_release.c
+    ./Middlewares/ST/filex/common/src/fxe_file_open.c
+    ./Middlewares/ST/filex/common/src/fxe_file_read.c
+    ./Middlewares/ST/filex/common/src/fxe_file_relative_seek.c
+    ./Middlewares/ST/filex/common/src/fxe_file_rename.c
+    ./Middlewares/ST/filex/common/src/fxe_file_seek.c
+    ./Middlewares/ST/filex/common/src/fxe_file_truncate.c
+    ./Middlewares/ST/filex/common/src/fxe_file_truncate_release.c
+    ./Middlewares/ST/filex/common/src/fxe_file_write.c
+    ./Middlewares/ST/filex/common/src/fxe_file_write_notify_set.c
+    ./Middlewares/ST/filex/common/src/fxe_media_abort.c
+    ./Middlewares/ST/filex/common/src/fxe_media_cache_invalidate.c
+    ./Middlewares/ST/filex/common/src/fxe_media_check.c
+    ./Middlewares/ST/filex/common/src/fxe_media_close.c
+    ./Middlewares/ST/filex/common/src/fxe_media_close_notify_set.c
+    ./Middlewares/ST/filex/common/src/fxe_media_exFAT_format.c
+    ./Middlewares/ST/filex/common/src/fxe_media_extended_space_available.c
+    ./Middlewares/ST/filex/common/src/fxe_media_flush.c
+    ./Middlewares/ST/filex/common/src/fxe_media_format.c
+    ./Middlewares/ST/filex/common/src/fxe_media_open.c
+    ./Middlewares/ST/filex/common/src/fxe_media_open_notify_set.c
+    ./Middlewares/ST/filex/common/src/fxe_media_read.c
+    ./Middlewares/ST/filex/common/src/fxe_media_space_available.c
+    ./Middlewares/ST/filex/common/src/fxe_media_volume_get.c
+    ./Middlewares/ST/filex/common/src/fxe_media_volume_get_extended.c
+    ./Middlewares/ST/filex/common/src/fxe_media_volume_set.c
+    ./Middlewares/ST/filex/common/src/fxe_media_write.c
+    ./Middlewares/ST/filex/common/src/fxe_system_date_get.c
+    ./Middlewares/ST/filex/common/src/fxe_system_date_set.c
+    ./Middlewares/ST/filex/common/src/fxe_system_time_get.c
+    ./Middlewares/ST/filex/common/src/fxe_system_time_set.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_directory_create.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_directory_rename.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_file_create.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_file_rename.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_name_get.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_name_get_extended.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_short_name_get.c
+    ./Middlewares/ST/filex/common/src/fxe_unicode_short_name_get_extended.c
+)
 set(ThreadX_Src
     ./Middlewares/ST/threadx/utility/low_power/tx_low_power.c
     ./Middlewares/ST/threadx/ports/cortex_m7/gnu/src/tx_thread_context_restore.S
@@ -245,6 +494,8 @@ set(NAME_ELF nucleoh7a3zit6q.elf)
 add_executable(${NAME_ELF}
  ${MX_Application_Src}
  ${STM32_Drivers_Src}
+ ${Interfaces_Src}
+ ${FileX_Src}
  ${ThreadX_Src}
 )
 

@@ -23,8 +23,7 @@
 #define __MAIN_H
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -50,7 +49,7 @@ extern "C"
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim);
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
@@ -60,7 +59,7 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LEFT_PWM_AUDIO_Pin       GPIO_PIN_8
+#define LEFT_PWM_AUDIO_Pin GPIO_PIN_8
 #define LEFT_PWM_AUDIO_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
