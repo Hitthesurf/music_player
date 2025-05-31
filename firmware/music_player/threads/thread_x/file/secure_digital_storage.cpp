@@ -41,8 +41,23 @@ NextFileResult SecureDigitalStorage::NextFile(FileName& name)
   return (sd_status == FX_SUCCESS) ? NextFileResult::FileFound : NextFileResult::NoFileFound;
 }
 
-void SecureDigitalStorage::OpenFile(FileName name) {}
+void SecureDigitalStorage::OpenFile(FileName name)
+{
+  UINT sd_status = FX_SUCCESS;
+  sd_status = fx_file_open(&m_sdio_disk, &m_fx_file, name.data(), FX_OPEN_FOR_READ);
+  sd_status = fx_file_seek(&m_fx_file, 0);
+}
 
-void SecureDigitalStorage::ReadFile(FileData& data, size_t& data_size) {}
+void SecureDigitalStorage::ReadFile(FileData& data, size_t& data_size)
+{
+  ULONG bytes_read = 0;
+  UINT sd_status = FX_SUCCESS;
+  sd_status = fx_file_read(&m_fx_file, data.data(), max_data_read_size, &bytes_read);
+  data_size = bytes_read;
+}
 
-void SecureDigitalStorage::CloseFile() {}
+void SecureDigitalStorage::CloseFile()
+{
+  UINT sd_status = FX_SUCCESS;
+  sd_status = fx_file_close(&m_fx_file);
+}

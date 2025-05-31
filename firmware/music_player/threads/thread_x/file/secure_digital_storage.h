@@ -17,7 +17,7 @@ public:
   void CloseFile() override;
 
 private:
-  static ALIGN_32BYTES(uint32_t m_fx_sd_media_memory[FX_STM32_SD_DEFAULT_SECTOR_SIZE / sizeof(uint32_t)]);
+  ALIGN_32BYTES(uint32_t m_fx_sd_media_memory[FX_STM32_SD_DEFAULT_SECTOR_SIZE / sizeof(uint32_t)]);
   bool m_first_file = true;
   FX_MEDIA m_sdio_disk;
   FX_FILE m_fx_file;
