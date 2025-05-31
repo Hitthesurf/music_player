@@ -48,6 +48,12 @@ void SecureDigitalStorage::OpenFile(FileName name)
   sd_status = fx_file_seek(&m_fx_file, 0);
 }
 
+void SecureDigitalStorage::SeekPointInFile(uint32_t position)
+{
+  UINT sd_status = FX_SUCCESS;
+  sd_status = fx_file_seek(&m_fx_file, position);
+}
+
 void SecureDigitalStorage::ReadFile(FileData& data, size_t& data_size)
 {
   ULONG bytes_read = 0;
