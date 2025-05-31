@@ -1,6 +1,7 @@
 set(NAME threads)
 
 set(SOURCES
+  file/secure_digital_storage.cpp
   queue/char_queue.cpp
   thread_create/thread_create.cpp
   thread_utils.cpp

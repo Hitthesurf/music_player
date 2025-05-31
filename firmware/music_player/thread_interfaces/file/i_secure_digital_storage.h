@@ -4,13 +4,14 @@
 #include <array>
 #include <cstdint>
 
-namespace drivers
+namespace threads
 {
 
-class ISecureDigitalDriver
+class ISecureDigitalStorage
 {
 public:
-  virtual ~ISecureDigitalDriver() = default;
+  virtual ~ISecureDigitalStorage() = default;
+  virtual void OpenMedia() = 0;
   virtual void FirstFile() = 0;
   virtual NextFileResult NextFile(FileName& name) = 0;
   virtual void OpenFile(FileName name) = 0;
