@@ -5,9 +5,10 @@ set(SOURCES
   commands/tests_command_play.cpp
   tests_char_input.cpp
   tests_char_output.cpp
-  tests_led_service.cpp
   tests_command_line_interface.cpp
   tests_commands.cpp
+  tests_led_service.cpp
+  tests_read_wave.cpp
   tests_song_player.cpp
 )
 

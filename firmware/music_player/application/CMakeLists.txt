@@ -9,6 +9,7 @@ set(SOURCES
   command_line_interface/commands/play.cpp
   command_line_interface/commands.cpp
   led/led_service.cpp
+  read_music/read_wave.cpp
   setup_thread_tasks.cpp
   song_player.cpp
   waveforms/darkstar.cpp
