@@ -116,7 +116,8 @@ ReadInfoResult ReadWave::ReadInfo(threads::FileName name)
   m_bits_per_sample = bits_per_sample;
   m_size_of_data = size_of_data;
 
-  m_sd_storage.SeekPointInFile(44);
+  m_file_seek_point = wave_info_size;
+  m_sd_storage.SeekPointInFile(m_file_seek_point);
 
   return ReadInfoResult::ReadSuccess;
 }
@@ -135,14 +136,17 @@ void ReadWave::ProcessData(StereoSamples& stereo_samples)
   size_t data_size = 0;
   m_sd_storage.ReadFile(data, data_size);
 
-  const size_t blocks_to_process = data_size / m_block_align;
+  const size_t available_blocks_to_process = data_size / m_block_align;
+  const size_t blocks_to_process =
+    available_blocks_to_process > max_samples_count ? max_samples_count : available_blocks_to_process;
   for (size_t i = 0; i < blocks_to_process; i++)
   {
     stereo_samples.left.at(i) = data.at(left_offset + jump_number * i) + signed_offset;
     stereo_samples.right.at(i) = data.at(right_offset + jump_number * i) + signed_offset;
   }
   stereo_samples.sample_count = blocks_to_process;
-  m_sd_storage.SeekPointInFile(72);
+  m_file_seek_point += blocks_to_process * m_block_align;
+  m_sd_storage.SeekPointInFile(m_file_seek_point);
 }
 
 uint32_t ReadWave::GetSampleRate() const

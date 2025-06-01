@@ -16,12 +16,14 @@ private:
   uint32_t UINT32_LE(const uint8_t data[]);
   uint16_t UINT16_LE(const uint8_t data[]);
 
+  const size_t wave_info_size = 44;
   threads::ISecureDigitalStorage& m_sd_storage;
-  uint16_t m_number_of_channels;
-  uint32_t m_sample_rate;
-  uint32_t m_byte_rate;
-  uint16_t m_block_align;
-  uint16_t m_bits_per_sample;
-  uint32_t m_size_of_data;
+  size_t m_file_seek_point = 0;
+  uint16_t m_number_of_channels = 0;
+  uint32_t m_sample_rate = 0;
+  uint32_t m_byte_rate = 0;
+  uint16_t m_block_align = 0;
+  uint16_t m_bits_per_sample = 0;
+  uint32_t m_size_of_data = 0;
 };
 }
