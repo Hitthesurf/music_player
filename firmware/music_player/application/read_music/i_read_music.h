@@ -11,7 +11,7 @@ class IReadMusic
 {
 public:
   virtual ~IReadMusic() = default;
-  virtual void ReadInfo(threads::FileName name) = 0;
+  virtual ReadInfoResult ReadInfo(threads::FileName name) = 0;
   virtual void ProcessData(StereoSamples& stereo_samples) = 0;
   [[nodiscard]]
   virtual uint32_t GetSampleRate() const = 0;

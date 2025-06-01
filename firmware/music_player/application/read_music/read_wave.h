@@ -8,11 +8,20 @@ class ReadWave : public IReadMusic
 {
 public:
   ReadWave(threads::ISecureDigitalStorage& sd_storage);
-  void ReadInfo(threads::FileName name) override;
+  ReadInfoResult ReadInfo(threads::FileName name) override;
   void ProcessData(StereoSamples& stereo_samples) override;
   uint32_t GetSampleRate() const override;
 
 private:
+  uint32_t UINT32_LE(const uint8_t data[]);
+  uint16_t UINT16_LE(const uint8_t data[]);
+
   threads::ISecureDigitalStorage& m_sd_storage;
+  uint16_t m_number_of_channels;
+  uint32_t m_sample_rate;
+  uint32_t m_byte_rate;
+  uint16_t m_block_align;
+  uint16_t m_bits_per_sample;
+  uint32_t m_size_of_data;
 };
 }
