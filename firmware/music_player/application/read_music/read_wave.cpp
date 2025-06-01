@@ -142,6 +142,7 @@ void ReadWave::ProcessData(StereoSamples& stereo_samples)
     stereo_samples.right.at(i) = data.at(right_offset + jump_number * i) + signed_offset;
   }
   stereo_samples.sample_count = blocks_to_process;
+  m_sd_storage.SeekPointInFile(72);
 }
 
 uint32_t ReadWave::GetSampleRate() const
