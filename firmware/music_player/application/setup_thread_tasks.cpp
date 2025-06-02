@@ -6,11 +6,13 @@
 #include "command_line_interface/commands/echo.h"
 #include "command_line_interface/commands/pause.h"
 #include "command_line_interface/commands/play.h"
+#include "file/secure_digital_storage.h"
 #include "hal_callbacks.h"
 #include "led/led_one_driver.h"
 #include "led/led_service.h"
 #include "led/led_two_driver.h"
 #include "pwm/pwm_driver.h"
+#include "read_music/read_wave.h"
 #include "song_player.h"
 #include "thread_create/thread_create.h"
 #include "uart/uart_driver.h"
@@ -39,6 +41,7 @@ ICommandLineInterface& GetCommandLineInterface();
 ILedService& GetLedService();
 ISongDriver& GetSongDriver();
 ISongPlayer& GetSongPlayer();
+IReadMusic& GetReadWave();
 
 void CharOutputTask(uint32_t input)
 {
@@ -133,9 +136,16 @@ ISongDriver& GetSongDriver()
   return pwm_driver;
 }
 
+IReadMusic& GetReadWave()
+{
+  static threads::SecureDigitalStorage sd_storage;
+  static ReadWave read_wave(sd_storage);
+  return read_wave;
+}
+
 ISongPlayer& GetSongPlayer()
 {
-  static SongPlayer song_player{GetSongDriver()};
+  static SongPlayer song_player{GetSongDriver(), GetReadWave()};
   return song_player;
 }
 
