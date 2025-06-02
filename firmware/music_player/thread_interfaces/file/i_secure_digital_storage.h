@@ -16,7 +16,7 @@ public:
   virtual NextFileResult NextFile(FileName& name) = 0;
   virtual void OpenFile(FileName name) = 0;
   virtual void SeekPointInFile(uint32_t position) = 0;
-  virtual void ReadFile(FileData& data, size_t& data_size) = 0;
+  virtual void ReadFile(FileData& data, size_t bytes_to_read, size_t& bytes_received) = 0;
   virtual void CloseFile() = 0;
 };
 }

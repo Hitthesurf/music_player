@@ -14,7 +14,7 @@ public:
   NextFileResult NextFile(FileName& name) override;
   void OpenFile(FileName name) override;
   void SeekPointInFile(uint32_t position) override;
-  void ReadFile(FileData& data, size_t& data_size) override;
+  void ReadFile(FileData& data, size_t bytes_to_read, size_t& bytes_received) override;
   void CloseFile() override;
 
 private:

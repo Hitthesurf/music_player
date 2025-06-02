@@ -30,9 +30,9 @@ ReadInfoResult ReadWave::ReadInfo(threads::FileName name)
   m_sd_storage.OpenFile(name);
   threads::FileData wave_file;
   size_t wave_file_size = 0;
-  m_sd_storage.ReadFile(wave_file, wave_file_size);
+  m_sd_storage.ReadFile(wave_file, wave_info_size, wave_file_size);
 
-  if (wave_file_size < 44)
+  if (wave_file_size < wave_info_size)
     return ReadInfoResult::ReadError;
 
   size_t pointer = 0;
@@ -134,7 +134,8 @@ void ReadWave::ProcessData(StereoSamples& stereo_samples)
 
   threads::FileData data;
   size_t data_size = 0;
-  m_sd_storage.ReadFile(data, data_size);
+  const size_t bytes_to_read = max_samples_count * m_block_align;
+  m_sd_storage.ReadFile(data, bytes_to_read, data_size);
 
   const size_t available_blocks_to_process = data_size / m_block_align;
   const size_t blocks_to_process =

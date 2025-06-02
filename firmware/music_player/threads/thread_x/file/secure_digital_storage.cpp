@@ -54,12 +54,13 @@ void SecureDigitalStorage::SeekPointInFile(uint32_t position)
   sd_status = fx_file_seek(&m_fx_file, position);
 }
 
-void SecureDigitalStorage::ReadFile(FileData& data, size_t& data_size)
+void SecureDigitalStorage::ReadFile(FileData& data, size_t bytes_to_read, size_t& bytes_received)
 {
   ULONG bytes_read = 0;
   UINT sd_status = FX_SUCCESS;
-  sd_status = fx_file_read(&m_fx_file, data.data(), max_data_read_size, &bytes_read);
-  data_size = bytes_read;
+  const size_t data_read_size = max_data_read_size > bytes_to_read ? bytes_to_read : max_data_read_size;
+  sd_status = fx_file_read(&m_fx_file, data.data(), data_read_size, &bytes_read);
+  bytes_received = bytes_read;
 }
 
 void SecureDigitalStorage::CloseFile()

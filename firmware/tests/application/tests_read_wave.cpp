@@ -58,7 +58,7 @@ TEST_F(ReadWaveTests, read_wave_calculates_the_correct_sample_rate_and_sets_file
     0x00, 0x08, 0x00, 0x00, // Subchunk2Size
   };
   m_sd_storage.state.read_file_data.push(wave_info);
-  m_sd_storage.state.read_file_data_size.push(wave_info_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_info_size);
 
   // When
   const ReadInfoResult result = m_read_wave.ReadInfo(file_name);
@@ -66,6 +66,7 @@ TEST_F(ReadWaveTests, read_wave_calculates_the_correct_sample_rate_and_sets_file
 
   // Then
   ASSERT_EQ(1, m_sd_storage.state.read_file_call_count);
+  ASSERT_EQ(wave_info_size, m_sd_storage.state.read_file_bytes_to_read.back());
   ASSERT_EQ(ReadInfoResult::ReadSuccess, result);
   ASSERT_EQ(22050, sample_rate);
   ASSERT_EQ(1, m_sd_storage.state.seek_point_call_count);
@@ -93,10 +94,10 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_2_channels_and
     0x00, 0x08, 0x00, 0x00, // Subchunk2Size
   };
   m_sd_storage.state.read_file_data.push(wave_info);
-  m_sd_storage.state.read_file_data_size.push(wave_info_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_info_size);
 
   m_sd_storage.state.read_file_data.push(wave_data);
-  m_sd_storage.state.read_file_data_size.push(wave_data_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_data_size);
 
   // When
   const ReadInfoResult result = m_read_wave.ReadInfo(file_name);
@@ -111,6 +112,7 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_2_channels_and
     .right = {0x80, 0x73, 0x94, 0x79, 0x26, 0x72, 0x8d},
     .sample_count = 7
   };
+  ASSERT_EQ(4 * max_samples_count, m_sd_storage.state.read_file_bytes_to_read.back());
   ASSERT_EQ(expected_samples.sample_count, samples.sample_count);
   ASSERT_EQ(0, memcmp(expected_samples.left.data(), samples.left.data(), samples.sample_count));
   ASSERT_EQ(0, memcmp(expected_samples.right.data(), samples.right.data(), samples.sample_count));
@@ -140,10 +142,10 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_1_channel_and_
     0x00, 0x08, 0x00, 0x00, // Subchunk2Size
   };
   m_sd_storage.state.read_file_data.push(wave_info);
-  m_sd_storage.state.read_file_data_size.push(wave_info_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_info_size);
 
   m_sd_storage.state.read_file_data.push(wave_data);
-  m_sd_storage.state.read_file_data_size.push(wave_data_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_data_size);
 
   // When
   const ReadInfoResult result = m_read_wave.ReadInfo(file_name);
@@ -158,6 +160,7 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_1_channel_and_
     .right = {0x80, 0x80, 0x97, 0x73, 0x93, 0x94, 0x79, 0x79, 0x67, 0x26, 0x72, 0x72, 0x4e, 0x8d},
     .sample_count = 14
   };
+  ASSERT_EQ(2 * max_samples_count, m_sd_storage.state.read_file_bytes_to_read.back());
   ASSERT_EQ(expected_samples.sample_count, samples.sample_count);
   ASSERT_EQ(0, memcmp(expected_samples.left.data(), samples.left.data(), samples.sample_count));
   ASSERT_EQ(0, memcmp(expected_samples.right.data(), samples.right.data(), samples.sample_count));
@@ -187,10 +190,10 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_2_channels_and
     0x00, 0x08, 0x00, 0x00, // Subchunk2Size
   };
   m_sd_storage.state.read_file_data.push(wave_info);
-  m_sd_storage.state.read_file_data_size.push(wave_info_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_info_size);
 
   m_sd_storage.state.read_file_data.push(wave_data);
-  m_sd_storage.state.read_file_data_size.push(wave_data_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_data_size);
 
   // When
   const ReadInfoResult result = m_read_wave.ReadInfo(file_name);
@@ -203,6 +206,7 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_2_channels_and
     .right = {0x00, 0x00, 0x17, 0xf3, 0x13, 0x14, 0xf9, 0xf9, 0xe7, 0xa6, 0xf2, 0xf2, 0xce, 0x0d},
     .sample_count = 14
   };
+  ASSERT_EQ(2 * max_samples_count, m_sd_storage.state.read_file_bytes_to_read.back());
   ASSERT_EQ(expected_samples.sample_count, samples.sample_count);
   ASSERT_EQ(0, memcmp(expected_samples.left.data(), samples.left.data(), samples.sample_count));
   ASSERT_EQ(0, memcmp(expected_samples.right.data(), samples.right.data(), samples.sample_count));
@@ -232,10 +236,10 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_1_channel_and_
     0x00, 0x08, 0x00, 0x00, // Subchunk2Size
   };
   m_sd_storage.state.read_file_data.push(wave_info);
-  m_sd_storage.state.read_file_data_size.push(wave_info_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_info_size);
 
   m_sd_storage.state.read_file_data.push(wave_data);
-  m_sd_storage.state.read_file_data_size.push(wave_data_size);
+  m_sd_storage.state.read_file_bytes_received.push(wave_data_size);
 
   // When
   const ReadInfoResult result = m_read_wave.ReadInfo(file_name);
@@ -243,11 +247,16 @@ TEST_F(ReadWaveTests, process_data_can_process_the_wave_data_with_1_channel_and_
   m_read_wave.ProcessData(samples);
 
   // Then
+  // clang-format off
   StereoSamples expected_samples = {
-    .left = {0x00, 0x00, 0x00, 0x00, 0x24, 0x17, 0x1e, 0xf3, 0x3c, 0x13, 0x3c, 0x14, 0x16, 0xf9, 0x18},
-    .right = {0x00, 0x00, 0x00, 0x00, 0x24, 0x17, 0x1e, 0xf3, 0x3c, 0x13, 0x3c, 0x14, 0x16, 0xf9, 0x18},
-    .sample_count = 15
+    .left = {0x00, 0x00, 0x00, 0x00, 0x24, 0x17, 0x1e, 0xf3, 0x3c, 0x13, 0x3c, 0x14, 0x16, 0xf9, 0x18, 0xf9, 0x34, 0xe7,
+             0x23, 0xa6, 0x3c, 0xf2, 0x24, 0xf2, 0x11, 0xce, 0x1a, 0x0d},
+    .right = {0x00, 0x00, 0x00, 0x00, 0x24, 0x17, 0x1e, 0xf3, 0x3c, 0x13, 0x3c, 0x14, 0x16, 0xf9, 0x18, 0xf9, 0x34,
+             0xe7, 0x23, 0xa6, 0x3c, 0xf2, 0x24, 0xf2, 0x11, 0xce, 0x1a, 0x0d},
+    .sample_count = 28
   };
+  // clang-format on
+  ASSERT_EQ(max_samples_count, m_sd_storage.state.read_file_bytes_to_read.back());
   ASSERT_EQ(expected_samples.sample_count, samples.sample_count);
   ASSERT_EQ(0, memcmp(expected_samples.left.data(), samples.left.data(), samples.sample_count));
   ASSERT_EQ(0, memcmp(expected_samples.right.data(), samples.right.data(), samples.sample_count));

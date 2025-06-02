@@ -6,7 +6,7 @@
 
 namespace threads
 {
-constexpr size_t max_data_read_size = 100;
+constexpr size_t max_data_read_size = 256;
 using FileName = std::array<char, FX_MAX_LONG_NAME_LEN>;
 using FileData = std::array<uint8_t, max_data_read_size>;
 

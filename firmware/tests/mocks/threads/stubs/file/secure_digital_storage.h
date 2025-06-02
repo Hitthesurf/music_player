@@ -36,7 +36,7 @@ public:
     // Stub: no implementation needed for tests.
   }
 
-  void ReadFile(FileData& data, size_t& data_size) override
+  void ReadFile(FileData& data, size_t bytes_to_read, size_t& bytes_received) override
   {
     // Stub: no implementation needed for tests.
   }

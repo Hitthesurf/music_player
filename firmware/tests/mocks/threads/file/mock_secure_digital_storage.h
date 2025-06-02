@@ -39,13 +39,14 @@ public:
     state.last_seek_position = position;
   }
 
-  void ReadFile(threads::FileData& data, size_t& data_size) override
+  void ReadFile(threads::FileData& data, size_t bytes_to_read, size_t& bytes_received) override
   {
     state.read_file_call_count++;
     data = state.read_file_data.front();
-    data_size = state.read_file_data_size.front();
+    bytes_received = state.read_file_bytes_received.front();
     state.read_file_data.pop();
-    state.read_file_data_size.pop();
+    state.read_file_bytes_received.pop();
+    state.read_file_bytes_to_read.push(bytes_to_read);
   }
 
   void CloseFile() override
@@ -70,7 +71,8 @@ public:
     uint32_t last_seek_position = 0;
 
     size_t read_file_call_count = 0;
-    std::queue<size_t> read_file_data_size{};
+    std::queue<size_t> read_file_bytes_received{};
+    std::queue<size_t> read_file_bytes_to_read{};
 
     size_t close_file_call_count = 0;
 
