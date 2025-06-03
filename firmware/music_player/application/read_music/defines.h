@@ -5,6 +5,8 @@
 
 namespace application
 {
+
+constexpr size_t samples_queue_count = 5;
 constexpr size_t max_samples_count = 128;
 using SampleData = std::array<uint8_t, max_samples_count>;
 

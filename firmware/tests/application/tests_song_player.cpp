@@ -1,6 +1,7 @@
 #include "drivers/mock_pwm_driver.h"
 #include "file/defines.h"
 #include "read_music/mock_read_music.h"
+#include "read_music/mock_samples_queue.h"
 #include "song_player.h"
 #include "threads/mock_char_queue.h"
 #include <gmock/gmock.h>
@@ -13,13 +14,16 @@ class SongPlayerTests : public testing::Test
 {
 public:
   SongPlayerTests() :
-    m_song_player(m_song_driver, m_read_music)
+    m_song_player(m_song_driver, m_read_music, m_samples_queue)
   {
+    const StereoSamples empty_sample = {.left = {0}, .right = {0}, .sample_count = 1};
+    m_samples_queue.state.get_isr_return_value = empty_sample;
   }
 
 protected:
   MockPWMDriver m_song_driver{};
   MockReadMusic m_read_music{};
+  MockSamplesQueue m_samples_queue{};
   SongPlayer m_song_player;
 };
 
@@ -61,10 +65,67 @@ TEST_F(SongPlayerTests, callback_loads_next_note_into_song_driver)
   ASSERT_EQ(1, m_song_driver.state.load_right_call_count);
 }
 
+TEST_F(SongPlayerTests, next_note_gets_sample_on_first_next_note)
+{
+
+  // When
+  m_song_player.NextNote();
+
+  // Then
+  ASSERT_EQ(1, m_samples_queue.state.get_isr_call_count);
+}
+
+TEST_F(SongPlayerTests, next_note_gets_next_sample_when_at_end_of_current_sample)
+{
+  // Given
+  StereoSamples samples;
+  samples.sample_count = 2;
+  m_samples_queue.state.get_isr_return_value = samples;
+
+  // When
+  m_song_player.NextNote();
+  m_song_player.NextNote();
+
+  // Then
+  ASSERT_EQ(1, m_samples_queue.state.get_isr_call_count);
+
+  // When
+  m_song_player.NextNote();
+
+  // Then
+  ASSERT_EQ(2, m_samples_queue.state.get_isr_call_count);
+}
+
+TEST_F(SongPlayerTests, next_note_sends_the_correct_samples)
+{
+  // Given
+  const StereoSamples samples = {
+    .left = {1, 2},
+    .right = {3, 4},
+    .sample_count = 2
+  };
+  m_samples_queue.state.get_isr_return_value = samples;
+
+  // When
+  m_song_player.NextNote();
+
+  // Then
+  ASSERT_EQ(1, m_samples_queue.state.get_isr_call_count);
+  ASSERT_EQ(samples.left.at(0), m_song_driver.state.last_left_value);
+  ASSERT_EQ(samples.right.at(0), m_song_driver.state.last_right_value);
+
+  m_song_player.NextNote();
+
+  // Then
+  ASSERT_EQ(1, m_samples_queue.state.get_isr_call_count);
+  ASSERT_EQ(samples.left.at(1), m_song_driver.state.last_left_value);
+  ASSERT_EQ(samples.right.at(1), m_song_driver.state.last_right_value);
+}
+
 TEST_F(SongPlayerTests, run_task_only_calls_changing_song_functions_once_after_selecting_song)
 {
   // Given
-  FileName name = {'T', 'e', 's', 't', '.', 'w', 'a', 'e'};
+  FileName name = {'T', 'e', 's', 't', '.', 'w', 'a', 'v'};
   m_song_player.SelectSong(name);
   const size_t some_sample_rate = 22050;
   m_read_music.state.get_sample_rate_return_value = some_sample_rate;
@@ -79,4 +140,15 @@ TEST_F(SongPlayerTests, run_task_only_calls_changing_song_functions_once_after_s
   ASSERT_EQ(1, m_read_music.state.get_sample_rate_call_count);
   ASSERT_EQ(1, m_song_driver.state.config_call_count);
   ASSERT_EQ(some_sample_rate, m_song_driver.state.last_sample_rate);
+}
+
+TEST_F(SongPlayerTests, run_task_calls_needed_functions_to_process_data)
+{
+  // When
+  m_song_player.RunStreamThreadTask();
+
+  // Then
+  ASSERT_EQ(1, m_samples_queue.state.add_sample_location_call_count);
+  ASSERT_EQ(1, m_read_music.state.process_data_call_count);
+  ASSERT_EQ(1, m_samples_queue.state.add_sample_stored_call_count);
 }

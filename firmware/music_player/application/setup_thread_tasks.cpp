@@ -13,6 +13,7 @@
 #include "led/led_two_driver.h"
 #include "pwm/pwm_driver.h"
 #include "read_music/read_wave.h"
+#include "read_music/samples_queue.h"
 #include "song_player.h"
 #include "thread_create/thread_create.h"
 #include "uart/uart_driver.h"
@@ -145,7 +146,8 @@ IReadMusic& GetReadWave()
 
 ISongPlayer& GetSongPlayer()
 {
-  static SongPlayer song_player{GetSongDriver(), GetReadWave()};
+  static SamplesQueue samples_queue;
+  static SongPlayer song_player{GetSongDriver(), GetReadWave(), samples_queue};
   return song_player;
 }
 
