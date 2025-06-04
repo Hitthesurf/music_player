@@ -24,7 +24,7 @@ private:
   application::IReadMusic& m_read_music;
   application::ISamplesQueue& m_samples_queue;
   application::StereoSamples& m_current_samples;
-  application::StereoSamples m_empty_sample = {.left = {0}, .right = {0}, .sample_count = 1};
+  application::StereoSamples m_empty_sample = {.left = {}, .right = {}, .sample_count = 0};
   size_t m_note_count = 0;
   threads::FileName m_file_name;
   bool m_change_song = false;

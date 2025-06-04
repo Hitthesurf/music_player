@@ -34,10 +34,6 @@ uint8_t Uint8Queue::Get()
 uint8_t Uint8Queue::GetIsr()
 {
   ULONG message = 0;
-  ULONG status = tx_queue_receive(&m_tx_queue, &message, TX_NO_WAIT);
-  if (status != 0)
-  {
-    return 10;
-  }
+  const ULONG status = tx_queue_receive(&m_tx_queue, &message, TX_NO_WAIT);
   return static_cast<uint8_t>(message);
 }

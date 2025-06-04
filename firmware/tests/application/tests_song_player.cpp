@@ -16,8 +16,8 @@ public:
   SongPlayerTests() :
     m_song_player(m_song_driver, m_read_music, m_samples_queue)
   {
-    const StereoSamples empty_sample = {.left = {0}, .right = {0}, .sample_count = 1};
-    m_samples_queue.state.get_isr_return_value = empty_sample;
+
+    m_samples_queue.state.get_isr_return_value = one_sample;
   }
 
 protected:
@@ -25,6 +25,9 @@ protected:
   MockReadMusic m_read_music{};
   MockSamplesQueue m_samples_queue{};
   SongPlayer m_song_player;
+
+  const StereoSamples empty_sample = {.left = {}, .right = {}, .sample_count = 0};
+  const StereoSamples one_sample = {.left = {0}, .right = {0}, .sample_count = 1};
 };
 
 TEST_F(SongPlayerTests, play_calls_song_driver_play)
@@ -122,6 +125,19 @@ TEST_F(SongPlayerTests, next_note_sends_the_correct_samples)
   ASSERT_EQ(samples.right.at(1), m_song_driver.state.last_right_value);
 }
 
+TEST_F(SongPlayerTests, next_note_does_not_blow_up_when_sample_count_is_zero)
+{
+  // Given
+  m_samples_queue.state.get_isr_return_value = empty_sample;
+
+  // When
+  m_song_player.NextNote();
+
+  // Then
+  ASSERT_EQ(0, m_song_driver.state.load_left_call_count);
+  ASSERT_EQ(0, m_song_driver.state.load_right_call_count);
+}
+
 TEST_F(SongPlayerTests, run_task_only_calls_changing_song_functions_once_after_selecting_song)
 {
   // Given
@@ -151,4 +167,28 @@ TEST_F(SongPlayerTests, run_task_calls_needed_functions_to_process_data)
   ASSERT_EQ(1, m_samples_queue.state.add_sample_location_call_count);
   ASSERT_EQ(1, m_read_music.state.process_data_call_count);
   ASSERT_EQ(1, m_samples_queue.state.add_sample_stored_call_count);
+}
+
+TEST_F(SongPlayerTests, run_task_calls_pause_when_no_more_values_left_to_read)
+{
+  // Given
+  m_samples_queue.state.add_sample_location_return_value = empty_sample;
+
+  // When
+  m_song_player.RunStreamThreadTask();
+
+  // Then
+  ASSERT_EQ(1, m_song_driver.state.stop_call_count);
+}
+
+TEST_F(SongPlayerTests, run_task_does_not_call_pause_when_values_left_to_read)
+{
+  // Given
+  m_samples_queue.state.add_sample_location_return_value = one_sample;
+
+  // When
+  m_song_player.RunStreamThreadTask();
+
+  // Then
+  ASSERT_EQ(0, m_song_driver.state.stop_call_count);
 }

@@ -20,7 +20,5 @@ private:
   std::array<uint32_t, threads::uint8_queue_size> m_id_queue_data;
   threads::Uint8Queue m_id_queue;
   uint8_t m_current_write_id = 0;
-
-  application::StereoSamples m_empty_sample = {.left = {128}, .right = {128}, .sample_count = 1};
 };
 }

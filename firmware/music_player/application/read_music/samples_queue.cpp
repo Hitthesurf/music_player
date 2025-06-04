@@ -21,9 +21,5 @@ void SamplesQueue::AddSampleStored()
 StereoSamples& SamplesQueue::GetISR()
 {
   const uint8_t read_id = m_id_queue.GetIsr();
-  if (read_id == 10)
-  {
-    return m_empty_sample;
-  }
   return m_samples_queue_data.at(read_id);
 }

@@ -18,6 +18,10 @@ void SongPlayer::NextNote()
   if (m_note_count == 0)
   {
     m_current_samples = m_samples_queue.GetISR();
+    if (m_current_samples.sample_count == 0)
+    {
+      return;
+    }
   }
   m_song_driver.LoadLeft(m_current_samples.left.at(m_note_count));
   m_song_driver.LoadRight(m_current_samples.right.at(m_note_count));
@@ -51,6 +55,10 @@ void SongPlayer::RunStreamThreadTask()
 
   StereoSamples& samples = m_samples_queue.AddSampleLocation();
   m_read_music.ProcessData(samples);
+  if (samples.sample_count == 0)
+  {
+    Pause();
+  }
   m_samples_queue.AddSampleStored();
 }
 
