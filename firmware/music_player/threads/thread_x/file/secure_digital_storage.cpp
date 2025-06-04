@@ -5,6 +5,10 @@ using namespace ::threads;
 
 void SecureDigitalStorage::OpenMedia()
 {
+  if (m_media_open)
+  {
+    return;
+  }
   UINT sd_status = FX_SUCCESS;
   sd_status = fx_media_open(&m_sdio_disk, (CHAR*)"Bob", fx_stm32_sd_driver, (VOID*)FX_NULL, (VOID*)m_fx_sd_media_memory,
     sizeof(m_fx_sd_media_memory));
@@ -14,6 +18,7 @@ void SecureDigitalStorage::OpenMedia()
     {
     }
   }
+  m_media_open = true;
 }
 
 void SecureDigitalStorage::FirstFile()
@@ -23,6 +28,7 @@ void SecureDigitalStorage::FirstFile()
 
 NextFileResult SecureDigitalStorage::NextFile(FileName& name)
 {
+  OpenMedia();
   UINT sd_status = FX_SUCCESS;
   UINT attributes;
   ULONG size;
@@ -43,6 +49,7 @@ NextFileResult SecureDigitalStorage::NextFile(FileName& name)
 
 void SecureDigitalStorage::OpenFile(FileName name)
 {
+  OpenMedia();
   UINT sd_status = FX_SUCCESS;
   sd_status = fx_file_open(&m_sdio_disk, &m_fx_file, name.data(), FX_OPEN_FOR_READ);
   sd_status = fx_file_seek(&m_fx_file, 0);

@@ -23,7 +23,7 @@ using namespace ::application::commands;
 using namespace ::drivers;
 using namespace ::threads;
 
-constexpr size_t stack_size = static_cast<size_t>(2u * 1024u);
+constexpr size_t stack_size = static_cast<size_t>(5u * 1024u);
 
 namespace
 {
@@ -31,6 +31,7 @@ namespace
 void CharOutputTask(uint32_t input);
 void CommandLineInterfaceTask(uint32_t input);
 void LedServiceTask(uint32_t input);
+void SongStreamTask(uint32_t input);
 
 ICharQueue& GetCharQueueInput();
 ICharQueue& GetCharQueueOutput();
@@ -71,6 +72,16 @@ void LedServiceTask(uint32_t input)
   while (true)
   {
     led_service.RunTask();
+  }
+}
+
+void SongStreamTask(uint32_t input)
+{
+  (void)input;
+  ISongPlayer& song_player = GetSongPlayer();
+  while (true)
+  {
+    song_player.RunStreamThreadTask();
   }
 }
 
@@ -159,6 +170,7 @@ void SetupThreadTasks()
   (void)GetCharOutput();
   (void)GetCommandLineInterface();
   GetLedService().Init();
+  GetSongPlayer();
 
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> char_output_stack;
   static const ThreadCreate char_output_thread{char_output_stack.data(), stack_size, CharOutputTask};
@@ -168,10 +180,15 @@ void SetupThreadTasks()
     CommandLineInterfaceTask};
 
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> led_service_stack;
-  static const ThreadCreate led_service_stack_thread{led_service_stack.data(), stack_size, LedServiceTask};
+  static const ThreadCreate led_service_thread{led_service_stack.data(), stack_size, LedServiceTask};
 
-  GetSongDriver().Config(22050);
-  GetSongPlayer().Play();
+  static std::array<uint32_t, stack_size / sizeof(uint32_t)> song_stream_stack;
+  static const ThreadCreate song_stream_thread{song_stream_stack.data(), stack_size, SongStreamTask};
+
+  FileName name = {'M', 'I', '3', '.', 'w', 'a', 'v'};
+  GetSongPlayer().SelectSong(name);
+  // GetSongDriver().Config(22050);
+  // GetSongPlayer().Play();
 }
 
 // Handle Hal callbacks
