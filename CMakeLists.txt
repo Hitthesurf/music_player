@@ -7,6 +7,8 @@ option(CLANG_TIDY "Build unit tests with clang tidy checks" OFF)
 # Export compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+add_compile_options(-O2)
+
 # Fail configure if target link library not found
 set(CMAKE_LINK_LIBRARIES_ONLY_TARGETS ON)
 

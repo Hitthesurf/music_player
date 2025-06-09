@@ -185,10 +185,12 @@ void SetupThreadTasks()
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> song_stream_stack;
   static const ThreadCreate song_stream_thread{song_stream_stack.data(), stack_size, SongStreamTask};
 
-  FileName name = {'M', 'I', '3', '.', 'w', 'a', 'v'};
+  // FileName name = {'0', '3', ' ', 'C', 'a', 'l', 'i', 'f', 'o', 'r', 'n', 'i', 'a', ' ', '(', 'T', 'h', 'e', 'r', 'e',
+  //   ' ', 'I', 's', ' ', 'N', 'o', ' ', 'E', 'n', 'd', ' ', 't', 'o', ' ', 'L', 'o', '.', 'w', 'a', 'v'};
+  FileName name = {'0', '1', ' ', 'G', 'r', 'e', 'n', 'a', 'd', 'e', ' ', 'S', 't', 'e', 'r', 'o', ' ', '1', '6', ' ',
+    'b', 'i', 't', ' ', '4', '4', 'h', 'z', '.', 'w', 'a', 'v'};
+  // FileName name = {'H', 'a', 'l', 'o', '3', '.', 'w', 'a', 'v'};
   GetSongPlayer().SelectSong(name);
-  // GetSongDriver().Config(22050);
-  // GetSongPlayer().Play();
 }
 
 // Handle Hal callbacks
