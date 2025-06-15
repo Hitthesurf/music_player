@@ -27,5 +27,9 @@
 - Can decode a wave file and play the required amplitude via pwm output
 - Can stop, start music via uart terra term command line
 
+# Project Video Demo
+[▶️ Watch Demo Video on Vimeo](https://vimeo.com/1093545290/fb03e3207f?ts=0&share=copy)
+
+
 # Fixes needed
 - The unit test run does not wait for the docker action to be finished building.
