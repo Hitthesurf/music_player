@@ -29,6 +29,7 @@
 
 # Project Video Demo
 [▶️ Watch Demo Video on Vimeo](https://vimeo.com/1093545290/fb03e3207f?ts=0&share=copy)
+![IMG_2653](https://github.com/user-attachments/assets/8c556823-221f-48bd-918f-975db079c628)
 
 
 # Fixes needed
