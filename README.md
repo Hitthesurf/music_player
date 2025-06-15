@@ -10,20 +10,21 @@
 - Dev Containers
 - Bare Matel Programming on STM32 (Simple GPIO)
 - ThreadX (Azure Rtos) (Basic multi threading concepts queues)
-- FileX (ToDo)
+- FileX
 - Using STMCLT
-- Comminication Protocols using HAL (uart, spi (Todo), SDMMC (Todo))
-- c/c++
+- Communication Protocols using HAL (uart, spi (Todo), SDMMC (DMA based))
+- C/C++
 - python
 - bash (scripts for github actions)
 - cmake
 - cmake presets
 - UML (Used for rough working of interfaces) 
 - Unit Test Bare Metal, Unit test HAL
-- Parsing binary files (.Wave files) (Todo)
+- Parsing binary files (.Wave files)
 
 # Project Features
-- Can play song on stored on internal flash via pwm output
+- Can stream wave files from micro SD card to internal RAM via DMA
+- Can decode a wave file and play the required amplitude via pwm output
 - Can stop, start music via uart terra term command line
 
 # Fixes needed
