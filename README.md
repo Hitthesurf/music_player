@@ -27,6 +27,19 @@
 - Can decode a wave file and play the required amplitude via pwm output
 - Can stop, start music via uart terra term command line
 
+# Rev 1 HardWare
+
+[View Music Player Rev1 Schematic PDF](docs/Schematic_Music-Player-Rev1.pdf)
+
+| Front Real PCB | Front Virtual PCB |
+|--------|--------|
+| <img src="docs/Real_PCB_Music_Player_Rev1_Front.JPEG" width="300"/> | <img src="docs/PCB_Music_Player_Rev1_Front.png" width="300"/> |
+
+
+| Back Real PCB |  Back Virtual PCB|
+|--------|--------|
+| <img src="docs/Real_PCB_Music_Player_Rev1_Back.JPEG" width="300"/> | <img src="docs/PCB_Music_Player_Rev1_Back.png" width="300"/> |
+
 # Project Video Demo
 [▶️ Watch Demo Video on Vimeo](https://vimeo.com/1093545290/fb03e3207f?ts=0&share=copy)
 ![IMG_2653](https://github.com/user-attachments/assets/8c556823-221f-48bd-918f-975db079c628)
