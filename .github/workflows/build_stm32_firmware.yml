@@ -24,7 +24,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: stm32-firmware-music-player
+          name: stm32-firmware-music-player-nucleo
           path: stm32-firmware
   build-stm32-firmware-rev1:
     name: Build STM32 Rev1 Binaries
@@ -43,5 +43,5 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: stm32-firmware-music-player
+          name: stm32-firmware-music-player-rev1
           path: stm32-firmware  
