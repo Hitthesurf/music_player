@@ -5,7 +5,7 @@ set -e
 pushd ..
 
 # Run CMake with the specified preset
-cmake --preset="firmware" --fresh
-cmake --build --preset="firmware"
+cmake --preset="firmware-nucleo" --fresh
+cmake --build --preset="firmware-nucleo"
 
 popd
