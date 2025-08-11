@@ -8,7 +8,9 @@
             "binaryDir": "${sourceDir}/build/vs.${presetName}",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
-                "CLANG_TIDY": "OFF"
+                "CLANG_TIDY": "OFF",
+                "TARGET_NUCLEO": "OFF",
+                "TARGET_REV1": "OFF"
             }
         },
         {
@@ -20,12 +22,23 @@
             }
         },
         {
-            "name": "firmware",
+            "name": "firmware-nucleo",
             "hidden": false,
             "toolchainFile": "cmake/target_stm32h7a3xx.cmake",
             "inherits": "default",
             "cacheVariables": {
-                "TESTS": "OFF"
+                "TESTS": "OFF",
+                "TARGET_NUCLEO": "ON"
+            }
+        },
+        {
+            "name": "firmware-rev1",
+            "hidden": false,
+            "toolchainFile": "cmake/target_stm32h562xx.cmake",
+            "inherits": "default",
+            "cacheVariables": {
+                "TESTS": "OFF",
+                "TARGET_REV1": "ON"
             }
         },
         {
@@ -108,8 +121,12 @@
             "configurePreset": "unit-tests.coverage.gcc.linux"
         },
         {
-            "name": "firmware",
-            "configurePreset": "firmware"
+            "name": "firmware-nucleo",
+            "configurePreset": "firmware-nucleo"
+        },
+        {
+            "name": "firmware-rev1",
+            "configurePreset": "firmware-rev1"
         }
     ],
     "testPresets": [
