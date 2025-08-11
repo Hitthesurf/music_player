@@ -35,7 +35,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
       - name: Build Firmware
-        run: cd scripts && ./build_rev1_stm32h7_firmware.sh
+        run: cd scripts && ./build_rev1_stm32h5_firmware.sh
       - name: Rename and copy files
         run: |
           mkdir stm32-firmware
