@@ -14,6 +14,7 @@ set(MX_Defines_Syms
 # STM32CubeMX generated include paths
 set(MX_Include_Dirs
     ${CMAKE_SOURCE_DIR}/FileX/App
+    ${CMAKE_SOURCE_DIR}/FileX/Target
     ${CMAKE_SOURCE_DIR}/Core/Inc
     ${CMAKE_SOURCE_DIR}/AZURE_RTOS/App
     ${CMAKE_SOURCE_DIR}/Drivers/STM32H5xx_HAL_Driver/Inc
@@ -30,6 +31,7 @@ set(MX_Include_Dirs
 set(MX_Application_Src
     ${CMAKE_SOURCE_DIR}/AZURE_RTOS/App/app_azure_rtos.c
     ${CMAKE_SOURCE_DIR}/FileX/App/app_filex.c
+    ${CMAKE_SOURCE_DIR}/FileX/Target/fx_stm32_sd_driver_glue.c
     ${CMAKE_SOURCE_DIR}/Core/Src/tx_initialize_low_level.S
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
     ${CMAKE_SOURCE_DIR}/Core/Src/app_threadx.c
@@ -75,6 +77,7 @@ set(STM32_Drivers_Src
 
 
 set(FileX_Src
+    ${CMAKE_SOURCE_DIR}/Middlewares/ST/filex/common/drivers/fx_stm32_sd_driver.c
     ${CMAKE_SOURCE_DIR}/Middlewares/ST/filex/common/src/fx_directory_attributes_read.c
     ${CMAKE_SOURCE_DIR}/Middlewares/ST/filex/common/src/fx_directory_attributes_set.c
     ${CMAKE_SOURCE_DIR}/Middlewares/ST/filex/common/src/fx_directory_create.c
