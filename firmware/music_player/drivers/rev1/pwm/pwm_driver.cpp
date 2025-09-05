@@ -4,8 +4,10 @@
 using namespace ::drivers;
 
 PWMDriver::PWMDriver() :
-  m_timer_aux_pwm(&htim4),
-  m_timer_load_audio(&htim17)
+  m_timer_aux_pwm(nullptr),
+  m_timer_load_audio(nullptr)
+// m_timer_aux_pwm(&htim4),
+// m_timer_load_audio(&htim17)
 {
 }
 
