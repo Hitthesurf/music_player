@@ -185,11 +185,34 @@ void SetupThreadTasks()
   static std::array<uint32_t, stack_size / sizeof(uint32_t)> song_stream_stack;
   static const ThreadCreate song_stream_thread{song_stream_stack.data(), stack_size, SongStreamTask};
 
-  // FileName name = {'0', '3', ' ', 'C', 'a', 'l', 'i', 'f', 'o', 'r', 'n', 'i', 'a', ' ', '(', 'T', 'h', 'e', 'r', 'e',
-  //   ' ', 'I', 's', ' ', 'N', 'o', ' ', 'E', 'n', 'd', ' ', 't', 'o', ' ', 'L', 'o', '.', 'w', 'a', 'v'};
-  FileName name = {'0', '1', ' ', 'G', 'r', 'e', 'n', 'a', 'd', 'e', ' ', 'S', 't', 'e', 'r', 'o', ' ', '1', '6', ' ',
-    'b', 'i', 't', ' ', '4', '4', 'h', 'z', '.', 'w', 'a', 'v'};
-  // FileName name = {'H', 'a', 'l', 'o', '3', '.', 'w', 'a', 'v'};
+  // clang-format off
+  // FileName name = {'C','a','l','i','f','o','r','n','i','a',' ','(','T','h','e','r','e',' ','I','s',' ','N','o',' ','E','n','d',' ','t','o',' ','L','o','.','w','a','v'};
+  // FileName name = {'C','e','d','a','r','w','o','o','d',' ','R','o','a','d','.','w','a','v'};
+  // FileName name = {'C','o','l','d','p','l','a','y','V','i','v','a','L','a','V','i','d','a','.','w','a','v'};
+  // FileName name = {'C','o','u','n','t',' ','O','n',' ','M','e','.','w','a','v'};
+  // FileName name = {'D','a','r','k','S','t','a','r','.','w','a','v'};
+  // FileName name = {'E','v','e','r','y',' ','B','r','e','a','k','i','n','g',' ','W','a','v','e','.','w','a','v'};
+  // FileName name = {'G','r','e','n','a','d','e',' ','4','4','H','z',' ','S','t','e','r','o',' ','8','b','i','t','.','w','a','v'};
+  // FileName name = {'H','a','l','o','3','.','w','a','v'};
+  // FileName name = {'I','r','i','s',' ','(','H','o','l','d',' ','M','e',' ','C','l','o','s','e',')','.','w','a','v'};
+  // FileName name = {'J','u','s','t',' ','t','h','e',' ','W','a','y',' ','Y','o','u',' ','A','r','e','.','w','a','v'};
+  // FileName name = {'L','i','q','u','o','r',' ','S','t','o','r','e',' ','B','l','u','e','s',' ','(','f','e','a','t','.',' ','D','a','m','i','a','n',')','.','w','a','v'};
+  FileName name = {'M','a','r','r','y',' ','Y','o','u','.','w','a','v'};
+  // FileName name = {'M','I','3','.','w','a','v'};
+  // FileName name = {'O','u','r',' ','F','i','r','s','t',' ','T','i','m','e','.','w','a','v'};
+  // FileName name = {'R','a','i','s','e','d',' ','B','y',' ','W','o','l','v','e','s','.','w','a','v'};
+  // FileName name = {'R','u','n','a','w','a','y',' ','B','a','b','y','.','w','a','v'};
+  // FileName name = {'S','l','e','e','p',' ','L','i','k','e',' ','a',' ','B','a','b','y',' ','T','o','n','i','g','h','t','.','w','a','v'};
+  // FileName name = {'S','o','m','e','w','h','e','r','e',' ','I','n',' ','B','r','o','o','k','l','y','n','.','w','a','v'};
+  // FileName name = {'S','o','n','g',' ','f','o','r',' ','S','o','m','e','o','n','e','.','w','a','v'};
+  // FileName name = {'T','a','l','k','i','n','g',' ','t','o',' ','t','h','e',' ','M','o','o','n','.','w','a','v'};
+  // FileName name = {'T','h','e',' ','L','a','z','y',' ','S','o','n','g','.','w','a','v'};
+  // FileName name = {'T','h','e',' ','M','i','r','a','c','l','e',' ','(','O','f',' ','J','o','e','y',' ','R','a','m','o','n','e',')','.','w','a','v'};
+  // FileName name = {'T','h','e',' ','O','t','h','e','r',' ','S','i','d','e',' ','(','f','e','a','t','.',' ','C','e','e',' ','L','o',' ','G','r','e','e',')','.','w','a','v'};
+  // FileName name = {'T','h','e',' ','T','r','o','u','b','l','e','s','.','w','a','v'};
+  // FileName name = {'T','h','i','s',' ','I','s',' ','W','h','e','r','e',' ','Y','o','u',' ','C','a','n',' ','R','e','a','c','h',' ','M','e',' ','N','o','w','.','w','a','v'};
+  // FileName name = {'V','o','l','c','a','n','o','.','w','a','v'};
+  // clang-format on
   GetSongPlayer().SelectSong(name);
 }
 
