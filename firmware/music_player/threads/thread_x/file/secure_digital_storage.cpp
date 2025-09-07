@@ -52,7 +52,9 @@ void SecureDigitalStorage::OpenFile(FileName name)
   OpenMedia();
   UINT sd_status = FX_SUCCESS;
   sd_status = fx_file_open(&m_sdio_disk, &m_fx_file, name.data(), FX_OPEN_FOR_READ);
+  assert(sd_status == FX_SUCCESS);
   sd_status = fx_file_seek(&m_fx_file, 0);
+  assert(sd_status == FX_SUCCESS);
 }
 
 void SecureDigitalStorage::SeekPointInFile(uint32_t position)
@@ -67,6 +69,7 @@ void SecureDigitalStorage::ReadFile(FileData& data, size_t bytes_to_read, size_t
   UINT sd_status = FX_SUCCESS;
   const size_t data_read_size = max_data_read_size > bytes_to_read ? bytes_to_read : max_data_read_size;
   sd_status = fx_file_read(&m_fx_file, data.data(), data_read_size, &bytes_read);
+  assert(sd_status == FX_SUCCESS || sd_status == FX_END_OF_FILE);
   bytes_received = bytes_read;
 }
 

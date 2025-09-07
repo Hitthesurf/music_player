@@ -22,7 +22,9 @@ private:
   TIM_HandleTypeDef* m_timer_aux_pwm;
   TIM_HandleTypeDef* m_timer_load_audio;
   const uint32_t m_left_channel = TIM_CHANNEL_3;
+  const uint32_t m_right_channel = TIM_CHANNEL_4;
   uint8_t m_sample_left = 0;
+  uint8_t m_sample_right = 0;
   static PWMDriver* s_instance;
 };
 
