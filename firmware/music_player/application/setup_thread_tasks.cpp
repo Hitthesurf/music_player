@@ -197,7 +197,7 @@ void SetupThreadTasks()
   // FileName name = {'I','r','i','s',' ','(','H','o','l','d',' ','M','e',' ','C','l','o','s','e',')','.','w','a','v'};
   // FileName name = {'J','u','s','t',' ','t','h','e',' ','W','a','y',' ','Y','o','u',' ','A','r','e','.','w','a','v'};
   // FileName name = {'L','i','q','u','o','r',' ','S','t','o','r','e',' ','B','l','u','e','s',' ','(','f','e','a','t','.',' ','D','a','m','i','a','n',')','.','w','a','v'};
-  FileName name = {'M','a','r','r','y',' ','Y','o','u','.','w','a','v'};
+  // FileName name = {'M','a','r','r','y',' ','Y','o','u','.','w','a','v'};
   // FileName name = {'M','I','3','.','w','a','v'};
   // FileName name = {'O','u','r',' ','F','i','r','s','t',' ','T','i','m','e','.','w','a','v'};
   // FileName name = {'R','a','i','s','e','d',' ','B','y',' ','W','o','l','v','e','s','.','w','a','v'};
@@ -210,8 +210,9 @@ void SetupThreadTasks()
   // FileName name = {'T','h','e',' ','M','i','r','a','c','l','e',' ','(','O','f',' ','J','o','e','y',' ','R','a','m','o','n','e',')','.','w','a','v'};
   // FileName name = {'T','h','e',' ','O','t','h','e','r',' ','S','i','d','e',' ','(','f','e','a','t','.',' ','C','e','e',' ','L','o',' ','G','r','e','e',')','.','w','a','v'};
   // FileName name = {'T','h','e',' ','T','r','o','u','b','l','e','s','.','w','a','v'};
-  // FileName name = {'T','h','i','s',' ','I','s',' ','W','h','e','r','e',' ','Y','o','u',' ','C','a','n',' ','R','e','a','c','h',' ','M','e',' ','N','o','w','.','w','a','v'};
+  // FileName name = {'T','h','i','s',' ','I','s',' ','W','h','e','r','e',' ','Y','o','u',' ','C','a','n',' ','R','e','a','c','h',' ','M','e',' ','N','o','.','w','a','v'};
   // FileName name = {'V','o','l','c','a','n','o','.','w','a','v'};
+  FileName name = {'O','n','e','R','e','p','u','b','l','i','c','C','o','u','n','t','i','n','g','S','t','a','r','s','.','w','a','v'};
   // clang-format on
   GetSongPlayer().SelectSong(name);
 }
