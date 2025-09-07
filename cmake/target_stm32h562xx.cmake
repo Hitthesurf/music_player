@@ -1,3 +1,7 @@
 include(${CMAKE_CURRENT_LIST_DIR}/target_stm32h5.cmake)
 
 add_compile_definitions(STM32H562xx)
+add_compile_definitions(FX_INCLUDE_USER_DEFINE_FILE)
+add_compile_definitions(TX_INCLUDE_USER_DEFINE_FILE)
+add_compile_definitions(TX_SINGLE_MODE_NON_SECURE=1)
+add_compile_definitions(USE_HAL_DRIVER)

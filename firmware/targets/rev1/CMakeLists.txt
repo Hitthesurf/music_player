@@ -482,8 +482,6 @@ add_executable(${NAME_ELF} ${MX_Application_Src} ${STM32_Drivers_Src}
 
 target_include_directories(${NAME_ELF} PRIVATE ${MX_Include_Dirs} .)
 
-add_compile_definitions(TX_SINGLE_MODE_NON_SECURE)
-
 target_link_libraries(
   ${NAME_ELF} device.drivers music_player.application thread.interfaces
   -T\"${CMAKE_CURRENT_SOURCE_DIR}/STM32H562xx_FLASH.ld\")
