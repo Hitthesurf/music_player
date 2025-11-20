@@ -40,5 +40,9 @@ RUN apt install -y python3-pip
 RUN pip3 install clang-format
 RUN pip3 install clang-tidy
 
+# Get Clangd-tidy
+RUN apt install -y clangd
+RUN pip3 install clangd-tidy
+
 # Get Code Coverage
 RUN apt install -y lcov
