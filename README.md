@@ -47,3 +47,4 @@
 
 # Fixes needed
 - The unit test run does not wait for the docker action to be finished building.
+- The docker file needs versions on the packages it installs. Otherwise, stuff could break in the future for example clang-format changed how it formatted cpp and caused clang-format check to fail on new docker image.

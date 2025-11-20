@@ -37,7 +37,7 @@ RUN apt install -y gdb
 
 # Get Clang-Format & clang-tidy
 RUN apt install -y python3-pip
-RUN pip3 install clang-format
+RUN pip3 install clang-format==20.1.0
 RUN pip3 install clang-tidy
 
 # Get Clangd-tidy
