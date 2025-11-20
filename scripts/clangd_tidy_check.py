@@ -8,8 +8,8 @@ import os
 
 import time
 
-
-PROJECT_BUILD_PREFIX = "/workspaces/music_player/build/vs.unit-tests."
+PROJECT_BUILD_PREFIX = "/__w/music_player/music_player/build/vs.unit-tests." # CI path
+# PROJECT_BUILD_PREFIX = "/workspaces/music_player/build/vs.unit-tests."     # Code spaces Path
 EXTENSIONS = ["*.cpp", "*.c"]
 EXCLUDE_PATTERNS = [
     "*/mocks/device/*"
