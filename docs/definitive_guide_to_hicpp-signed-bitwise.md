@@ -6,7 +6,8 @@
 
 ### **You must:**
 
-#### **1) Ensure each number is unsigned.**
+1. Ensure each number is unsigned.
+2. Ensure chained bitwise operators don't promote to `int32_t`.
 
 ## **Bitwise AND / OR / XOR (`&`, `|`, `^`)**
 
@@ -124,7 +125,7 @@ uint32_t >> uint8_t → uint32_t
 ~uint32_t → uint32_t
 ```
 
-## ❌ **Invalid Operations**
+### ❌ **Invalid Operations**
 
 (Any signed type involved)
 
