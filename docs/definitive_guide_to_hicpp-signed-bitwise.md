@@ -4,6 +4,8 @@
 
 (To fix *signed-bitwise* warnings for `&`, `|`, `^`, `~`, `<<`, `>>`)
 
+Results run using compiler `x86-64 clang 21.1.0`
+
 ### **You must:**
 
 1. Ensure each number is unsigned.
