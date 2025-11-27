@@ -150,7 +150,8 @@ def main():
     end = time.time()
     print(f"Took {end - start:.2f} seconds")
 
-    failed = (len(result.stdout) > 0) or (len(result.stderr) > 0)
+    # Note: A successful output produces stdout = '\n' and stderr = ''
+    failed = (len(result.stdout) + len(result.stderr) > 1)
     if failed:
         exit(1)
 
